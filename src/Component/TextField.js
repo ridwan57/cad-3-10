@@ -39,7 +39,7 @@ function ColorTextFields (props) {
       },
       '& .MuiOutlinedInput': {},
       '& .MuiInputBase-input': {
-        padding: '10px 17px',
+        padding: '4px 17px',
         maxWidth: '300px'
       },
       '& .MuiOutlinedInput-root': {
