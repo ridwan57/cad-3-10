@@ -7,6 +7,30 @@ import Typography from '@material-ui/core/Typography'
 import Stepper from './Stepper/Stepper'
 import ApplicantsRequirement from './Component/ApplicantsRequirement'
 
+import {
+  Breadcrumb,
+  Row,
+  Col,
+  Container,
+  Card,
+  ListGroup,
+  Button,
+  Modal,
+  FormControl,
+  InputGroup,
+  Form,
+  DropdownButton,
+  Dropdown,
+  Navbar,
+  Nav,
+  NavDropdown,
+  Accordion,
+  ProgressBar,
+  Table
+} from 'react-bootstrap'
+
+import 'bootstrap/dist/css/bootstrap.min.css'
+
 const theme = createTheme({
   typography: {
     fontFamily: ['open-sans'].join(',')

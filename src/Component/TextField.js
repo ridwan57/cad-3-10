@@ -27,8 +27,12 @@ function ColorTextFields (props) {
       // ].join(',')
       '& label.Mui-focused': {
         color: '#17A5CE',
-        padding: '2px 10px 0px 5px',
+        padding: '2px 10px 0px 10px',
         letterSpacing: '.9px',
+        // backgroundColor: 'red',
+        // position: 'relative',
+        // width: '80px'
+        top: '-5px',
 
         // color: "red",
         backgroundColor: 'white'

@@ -46,16 +46,16 @@ import Container from '@mui/material/Container'
 import TextField from '../Component/TextField'
 import ApplicantsRequirement from '../Component/ApplicantsRequirement'
 import { makeStyles } from '@mui/styles'
-
+import Quota from '../Component/Quota'
 const steps = [
   {
-    label: 'Select campaign settings',
+    label: "Applicant's Requirement",
     description: `For each ad campaign that you create, you can control how much
               you're willing to spend on clicks and conversions, which networks
               and geographical locations you want your ads to show on, and more.`
   },
   {
-    label: 'Create an ad group',
+    label: 'Quota metadata management',
     description:
       'An ad group contains one or more ads which target a shared set of keywords.'
   },
@@ -93,6 +93,14 @@ const useStyles = makeStyles({
     '& .MuiStepIcon-root.MuiStepIcon-completed': {
       color: '#17A5CE'
     }
+  },
+  stepLabel: {
+    '& .MuiStepLabel-label.MuiStepLabel-active': {
+      fontWeight: 'bold'
+    },
+    '& .MuiStepLabel-label.MuiStepLabel-completed': {
+      fontWeight: 'bold'
+    }
   }
 })
 export default function VerticalLinearStepper () {
@@ -118,7 +126,7 @@ export default function VerticalLinearStepper () {
           {steps.map((step, index) => (
             <Step key={step.label} className={buttonClasses.step}>
               <StepLabel
-                // style={{ color: '#17A5CE' }}
+                className={buttonClasses.stepLabel}
                 optional={
                   index === 2 ? (
                     <Typography variant='caption'>Last step</Typography>
@@ -147,7 +155,7 @@ export default function VerticalLinearStepper () {
                   <>
                     <Typography>{step.description}</Typography>
                     <Box sx={{ mb: 2 }}>
-                      <div></div>
+                      <Quota />
                     </Box>
                   </>
                 )}

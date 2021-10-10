@@ -13,6 +13,8 @@
     "@mui/material": "^5.0.1",
     "@mui/styles": "^5.0.1",
     "@themesberg/react-bootstrap": "^1.4.1",
+    "bootstrap": "^5.1.1",
+    "react-bootstrap": "^2.0.0-rc.0",
     "cra-template": "1.1.2",
     "date-fns": "^2.24.0",
     "lodash": "^4.17.21",
