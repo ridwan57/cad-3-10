@@ -1,25 +1,11 @@
-import * as React from "react";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import InputLabel from "@mui/material/InputLabel";
+import * as React from 'react'
+import Box from '@mui/material/Box'
+import TextField from '@mui/material/TextField'
+import InputLabel from '@mui/material/InputLabel'
 
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from '@mui/styles'
 
-{
-  /* <span className={classes.spanText}>ssc pass year for general</span> */
-}
-// '& .MuiOutlinedInput-root': {  // - The Input-root, inside the TextField-root
-//             '& fieldset': {            // - The <fieldset> inside the Input-root
-//                 borderColor: 'pink',   // - Set the Input border
-//             },
-//             '&:hover fieldset': {
-//                 borderColor: 'yellow', // - Set the Input border when parent has :hover
-//             },
-//             '&.Mui-focused fieldset': { // - Set the Input border when parent is focused
-//                 borderColor: 'green',
-//             },
-// },
-function ColorTextFields(props) {
+function ColorTextFields (props) {
   const useStyles = makeStyles({
     root: {
       // - The TextField-root
@@ -39,55 +25,55 @@ function ColorTextFields(props) {
       //   '"Segoe UI Emoji"',
       //   '"Segoe UI Symbol"',
       // ].join(',')
-      "& label.Mui-focused": {
-        color: "#17A5CE",
-        padding: "2px 10px 0px 5px",
-        letterSpacing: ".9px",
+      '& label.Mui-focused': {
+        color: '#17A5CE',
+        padding: '2px 10px 0px 5px',
+        letterSpacing: '.9px',
 
         // color: "red",
-        backgroundColor: "white",
+        backgroundColor: 'white'
       },
-      "& .MuiOutlinedInput": {},
-      "& .MuiInputBase-input": {
-        padding: "10px 17px",
-        maxWidth: "300px",
+      '& .MuiOutlinedInput': {},
+      '& .MuiInputBase-input': {
+        padding: '10px 17px',
+        maxWidth: '300px'
       },
-      "& .MuiOutlinedInput-root": {
+      '& .MuiOutlinedInput-root': {
         // color: "#17A5CE",
         // - The Input-root, inside the TextField-root
-        "& fieldset": {
+        '& fieldset': {
           // - The <fieldset> inside the Input-root
           // borderColor: "pink", // - Set the Input border
         },
-        "&:hover fieldset": {
+        '&:hover fieldset': {
           // borderColor: "yellow", // - Set the Input border when parent has :hover
         },
-        "&.Mui-focused fieldset": {
+        '&.Mui-focused fieldset': {
           // - Set the Input border when parent is focused
           // borderColor: "green",
-          border: "1px solid #C7C7C7",
-        },
-      },
-    },
-  });
+          border: '1px solid #C7C7C7'
+        }
+      }
+    }
+  })
 
-  console.log("props:", props);
+  console.log('props:', props)
   const {
-    placeHolderName = "Default",
-    titleName = "Default",
-    width = "auto",
-  } = props;
-  const classes = useStyles();
+    placeHolderName = 'Default',
+    titleName = 'Default',
+    width = 'auto'
+  } = props
+  const classes = useStyles()
   return (
     <TextField
       label={`${titleName}`}
-      color="primary"
-      id=
+      color='primary'
+      // id=
       // style={{ color: "blue" }}
       style={{
         // width: `${width}`,
         // fontFamily: "open-sans",
-        padding: "0",
+        padding: '0'
         // border: "1px solid #C7C7C7",
       }}
       fullWidth
@@ -96,27 +82,27 @@ function ColorTextFields(props) {
       focused
       placeholder={`${placeHolderName}`}
     />
-  );
+  )
 }
-function SpanText(props) {
+function SpanText (props) {
   const useStyles = makeStyles({
     spanText: {
-      fontFamily: "Open-Sans",
-      fontStyle: "Regular",
-      fontSize: "16px",
-      lineHeight: "25px",
-      letterSpacing: "0.75px",
+      fontFamily: 'Open-Sans',
+      fontStyle: 'Regular',
+      fontSize: '16px',
+      lineHeight: '25px',
+      letterSpacing: '0.75px',
 
       /* light text */
 
-      color: "#717171",
-    },
-  });
+      color: '#717171'
+    }
+  })
   // console.log("props:", props);
-  const classes = useStyles();
-  const { text = "default" } = props;
+  const classes = useStyles()
+  const { text = 'default' } = props
 
-  return <span className={classes.spanText}>{text}</span>;
+  return <span className={classes.spanText}>{text}</span>
 }
 
-export { SpanText, ColorTextFields };
+export { SpanText, ColorTextFields }
