@@ -15,45 +15,132 @@ const quotas = [
 const Quota = () => {
   return (
     <Table
+      borderless
       responsive
-      className='table-centered table-nowrap rounded mb-0 choice-table'
+      // bordered
+
+      className='table-centered rounded mb-0 overflow-hidden text-center'
+      style={{ borderSpacing: 0, borderCollapse: 'separate' }}
     >
-      <thead className='thead-light'>
+      <thead
+        className='thead-light'
+        style={{ letterSpacing: '.75px', fontWeight: 600 }}
+      >
         <tr>
-          <th className='border-0'>#</th>
-          <th className='border-0'>Shift</th>
-          <th className='border-0'>Version</th>
-          <th className='border-0'>Group</th>
-          <th className='border-0'>Gender</th>
-          <th className='border-0'>Seats</th>
-          <th className='border-0'>SQ</th>
-          <th className='border-0'>Action</th>
+          <th className='border-0 '>ID</th>
+          <th className='border-0'>Quota Name</th>
+          <th className='border-0'>Percentage</th>
+          <th className='border-0'>Unallocated Seats</th>
+          <th className='border-0'>General</th>
+          <th className='border-0'>Special</th>
+          <th className='border-0'>Priority</th>
         </tr>
       </thead>
-      <tbody>
-        {this.state.esvgs.map((esvg, id) => (
-          <tr>
-            <td>{id + 1}</td>
-            <td>{esvg.shift.shiftName}</td>
-            <td>{esvg.version.versionName}</td>
-            <td>{esvg.hscGroup.hscGroupName}</td>
-            <td>{esvg.gender}</td>
-            <td>{esvg.seatsAvailable}</td>
-            <td>
-              <Checkbox
-                // checked={esvg.SQChecked}
-                // disabled={esvg.alreadyExistInChoiceList}
-                // onChange={() => this.handleSQCheckedChange(esvg)}
-                name='checkedB'
-                color='primary'
-                style={{ marginTop: '-10px' }}
-              />
-              {/* )} */}
-            </td>
-            <td>AddIcon</td>
-          </tr>
-        ))}
-      </tbody>
+      {quotas.map((eachQuota, i) => (
+        <tr
+          style={{
+            backgroundColor: '#EAFAFF',
+            height: '60px'
+            // border: '1px solid #C7c7c7'
+          }}
+          className='border-2'
+        >
+          <td>1</td>
+          <td>Mark</td>
+          <td>
+            <div
+              style={{
+                // height: '80%',
+                // width: '50%',
+                margin: '0 auto',
+                borderRadius: '7px',
+                border: '1px solid #C7c7c7',
+                backgroundColor: 'white',
+                textAlign: 'center',
+                display: 'flex',
+                justifyContent: 'center',
+                textTransform: 'translate(-50%,-50%)'
+              }}
+              className=' h-80 w-50'
+            >
+              Otto
+            </div>
+          </td>
+          <td>@mdo</td>
+          <td>@mdo</td>
+          <td>@mdo</td>
+          <td>@mdo</td>
+        </tr>
+      ))}
+      <tr
+        style={{
+          backgroundColor: '#fff',
+          height: '60px'
+          // border: '1px solid #C7c7c7'
+        }}
+        className='border-2'
+      >
+        <td>1</td>
+        <td>Mark</td>
+        <td>
+          <div
+            style={{
+              // height: '80%',
+              // width: '50%',
+              margin: '0 auto',
+              borderRadius: '7px',
+              border: '1px solid #C7c7c7',
+              backgroundColor: 'white',
+              textAlign: 'center',
+              display: 'flex',
+              justifyContent: 'center',
+              textTransform: 'translate(-50%,-50%)'
+            }}
+            className=' h-80 w-50'
+          >
+            Otto
+          </div>
+        </td>
+        <td>@mdo</td>
+        <td>@mdo</td>
+        <td>@mdo</td>
+        <td>@mdo</td>
+      </tr>
+
+      <tr
+        style={{
+          backgroundColor: '#EAFAFF',
+          height: '60px'
+          // border: '1px solid #C7c7c7'
+        }}
+        className='border-2'
+      >
+        <td>1</td>
+        <td>Mark</td>
+        <td>
+          <div
+            style={{
+              // height: '80%',
+              // width: '50%',
+              margin: '0 auto',
+              borderRadius: '7px',
+              border: '1px solid #C7c7c7',
+              backgroundColor: 'white',
+              textAlign: 'center',
+              display: 'flex',
+              justifyContent: 'center',
+              textTransform: 'translate(-50%,-50%)'
+            }}
+            className=' h-80 w-50'
+          >
+            Otto
+          </div>
+        </td>
+        <td>@mdo</td>
+        <td>@mdo</td>
+        <td>@mdo</td>
+        <td>@mdo</td>
+      </tr>
     </Table>
   )
 }
