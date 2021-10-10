@@ -39,7 +39,9 @@ const theme = createTheme({
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <Stepper />
+      <div style={{ marginLeft: '100px' }}>
+        <Stepper />
+      </div>
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')

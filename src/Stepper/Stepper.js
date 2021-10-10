@@ -138,27 +138,19 @@ export default function VerticalLinearStepper () {
               </StepLabel>
 
               <StepContent>
-                {index === 0 ? (
-                  <Container
-                    maxWidth='100%'
-                    style={{
-                      marginLeft: '-10px'
-                      // marginRight: "-10px",
-                      // paddingRight: "-50px",
-                      // backgroundColor: "black",
-                      // color: "red",
-                    }}
-                  >
-                    <ApplicantsRequirement />
-                  </Container>
-                ) : (
-                  <>
-                    <Typography>{step.description}</Typography>
-                    <Box sx={{ mb: 2 }}>
-                      <Quota />
-                    </Box>
-                  </>
-                )}
+                <Container
+                  maxWidth='100%'
+                  style={{
+                    marginLeft: '-10px'
+                    // marginRight: "-10px",
+                    // paddingRight: "-50px",
+                    // backgroundColor: "black",
+                    // color: "red",
+                  }}
+                >
+                  {index === 0 ? <ApplicantsRequirement /> : <Quota />}
+                </Container>
+
                 <Container
                   maxWidth='100%'
                   style={{ marginTop: '20px', marginLeft: '-10px' }}
