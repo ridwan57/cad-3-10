@@ -1,10 +1,18 @@
 import React, { useState } from 'react'
 import Grid from '@material-ui/core/Grid'
 import { Table } from 'react-bootstrap'
-import { Checkbox, Button, Container } from '@material-ui/core'
-import { containerClasses, IconButton, TextField } from '@mui/material'
+import {
+  Checkbox,
+  Button,
+  Container,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select
+} from '@material-ui/core'
+// import { containerClasses, IconButton, TextField } from '@mui/material'
 import Fab from '@mui/material/Fab'
-import { Collapse, Dialog, DialogTitle } from '@mui/material'
+import { Collapse, Dialog, DialogTitle, TextField } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
 
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
@@ -55,7 +63,7 @@ const useStyles = makeStyles({
       // position: 'relative',
       // width: '80px',
       fontSize: '20px',
-      top: '-8px',
+      top: '-9px',
 
       // color: "red",
       backgroundColor: 'white'
@@ -148,7 +156,28 @@ const Quota = () => {
                 />
               </Grid>
               <Grid item xs={6}>
-                <TextField
+                <FormControl fullWidth variant='standard'>
+                  <TextField
+                    select
+                    label='Quota Type'
+                    className={classes.textField}
+                    fullWidth
+                    focused
+                    // sx={{ width: '100%' }}
+                    SelectProps={{
+                      multiple: true,
+                      value: []
+                    }}
+                  >
+                    <MenuItem value=''>
+                      <em>None</em>
+                    </MenuItem>
+                    <MenuItem value={'general'}>General</MenuItem>
+                    <MenuItem value={'special'}>Special</MenuItem>
+                  </TextField>
+                </FormControl>
+
+                {/* <TextField
                   className={classes.textField}
                   // sx={{ marginLeft: '10px', width: '40%' }}
                   fullWidth
@@ -156,7 +185,7 @@ const Quota = () => {
                   label='Quota Type'
                   placeholdre='Enter from DropDown'
                   InputProps={{ endAdornment: <KeyboardArrowDownIcon /> }}
-                />
+                /> */}
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -166,7 +195,7 @@ const Quota = () => {
                   fullWidth
                   focused
                   label='Description'
-                  value='lorem epsfgss   ssssssssss ssssss  sssssss ss  ssssssssssss sssssssss sgffffffffff fffffffffff ffffffff ffffffffff f ffff fffff'
+                  value='Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.'
                 />
               </Grid>
               <Grid item xs={6}></Grid>
