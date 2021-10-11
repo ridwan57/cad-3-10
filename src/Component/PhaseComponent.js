@@ -70,7 +70,10 @@ const PhaseComponent = () => {
     <>
       {phases.map((phase, i) => (
         <Container style={{ border: '1px solid #c7c7c7', marginLeft: '15px' }}>
-          <div className='d-flex justify-content-around mt-3'>
+          <div
+            className='d-flex justify-content-around mt-3 p-2'
+            style={{ backgroundColor: `${i === id ? '#E2E2E2' : '#fff'}` }}
+          >
             <h5 className='d-inline-block'>Phases {i + 1} </h5>
             {id !== i ? (
               <Fab

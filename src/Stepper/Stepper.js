@@ -122,124 +122,176 @@ export default function VerticalLinearStepper () {
 
   return (
     <div style={{ marginLeft: '100px' }}>
-      <Box sx={{ width: '100%', backgroundColor: 'red' }}>
-        <Stepper activeStep={activeStep} orientation='vertical'>
-          {steps.map((step, index) => (
-            <Step key={step.label} className={buttonClasses.step}>
-              <StepLabel
-                className={buttonClasses.stepLabel}
-                // optional={
-                //   index === 2 ? (
-                //     <Typography variant='caption'>Last step</Typography>
-                //   ) : null
-                // }
-              >
-                {step.label}
-                {/* <TextField /> */}
-              </StepLabel>
-
-              <StepContent>
-                {index === 0 && (
-                  <Container
-                    maxWidth='100%'
-                    style={{
-                      marginLeft: '-10px'
-                      // marginRight: "-10px",
-                      // paddingRight: "-50px",
-                      // backgroundColor: "black",
-                      // color: "red",
-                    }}
-                  >
-                    <ApplicantsRequirement />
-                  </Container>
-                )}
-                {index === 1 && (
-                  <Container
-                    maxWidth='100%'
-                    style={{
-                      marginLeft: '-10px'
-                      // marginRight: "-10px",
-                      // paddingRight: "-50px",
-                      // backgroundColor: "black",
-                      // color: "red",
-                    }}
-                  >
-                    <Quota />
-                  </Container>
-                )}
-
-                {index === 2 && <PhaseComponent />}
-
-                <Container
-                  maxWidth='100%'
-                  style={{ marginTop: '20px', marginLeft: '-10px' }}
+      <Paper rounded>
+        <Box sx={{ width: '100%' }}>
+          <Stepper activeStep={activeStep} orientation='vertical'>
+            {steps.map((step, index) => (
+              <Step key={step.label} className={buttonClasses.step}>
+                <StepLabel
+                  className={buttonClasses.stepLabel}
+                  // optional={
+                  //   index === 2 ? (
+                  //     <Typography variant='caption'>Last step</Typography>
+                  //   ) : null
+                  // }
                 >
-                  <Button
-                    variant='outlined'
-                    disabled={index === 0}
-                    onClick={handleBack}
-                    style={{
-                      borderRadius: '7px',
-                      backgroundColor: '#fff',
-                      padding: '18px 36px',
-                      width: '100px',
-                      height: '45px',
-                      color: '#A9A9A9',
-                      textAlign: 'center',
-                      fontFamily: 'open-sans',
-                      fontWeight: 'bold',
-                      fontSize: '16px',
-                      lineHeight: '22px',
-                      borderWidth: '1px',
-                      borderColor: '#A9A9A9'
-                      // marginLeft: "20px",
-                      // fontSize: "18px",
-                    }}
-                    sx={{ mt: 1, mr: 1 }}
-                    // className={buttonClasses.root}
-                  >
-                    Back
-                  </Button>
-                  <Button
-                    variant='contained'
-                    onClick={handleNext}
-                    style={{
-                      borderRadius: '7px',
-                      backgroundColor: '#17A5CE',
-                      padding: '18px 36px',
+                  {step.label}
+                  {/* <TextField /> */}
+                </StepLabel>
 
-                      width: '100px',
-                      height: '45px',
-                      color: 'white',
-                      textAlign: 'center',
-                      fontFamily: 'open-sans',
-                      fontWeight: 'bold',
-                      fontSize: '16px',
-                      lineHeight: '22px',
-                      marginLeft: '20px'
-                      // fontSize: "18px",
-                    }}
-                    // color="primary"
-                    sx={{ mt: 1, ml: 20 }}
-                    className={buttonClasses.root}
-                  >
-                    {index === steps.length - 1 ? 'Finish' : 'Next'}
-                  </Button>
-                </Container>
-              </StepContent>
-            </Step>
-          ))}
-        </Stepper>
+                <StepContent>
+                  {index === 0 && (
+                    <Container
+                      maxWidth='100%'
+                      style={{
+                        marginLeft: '-10px'
+                        // marginRight: "-10px",
+                        // paddingRight: "-50px",
+                        // backgroundColor: "black",
+                        // color: "red",
+                      }}
+                    >
+                      <ApplicantsRequirement />
+                    </Container>
+                  )}
+                  {index === 1 && (
+                    <Container
+                      maxWidth='100%'
+                      style={{
+                        marginLeft: '-10px'
+                        // marginRight: "-10px",
+                        // paddingRight: "-50px",
+                        // backgroundColor: "black",
+                        // color: "red",
+                      }}
+                    >
+                      <Quota />
+                    </Container>
+                  )}
 
-        {activeStep === steps.length && (
-          <Paper square elevation={0} sx={{ p: 3 }}>
-            <Typography>All steps completed - you&apos;re finished</Typography>
-            <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
-              Reset
-            </Button>
-          </Paper>
-        )}
-      </Box>
+                  {index === 2 && <PhaseComponent />}
+
+                  <Container
+                    maxWidth='100%'
+                    style={{ marginTop: '20px', marginLeft: '-10px' }}
+                  >
+                    <Button
+                      variant='outlined'
+                      disabled={index === 0}
+                      onClick={handleBack}
+                      style={{
+                        borderRadius: '7px',
+                        backgroundColor: '#fff',
+                        padding: '18px 36px',
+                        width: '100px',
+                        height: '45px',
+                        color: '#A9A9A9',
+                        textAlign: 'center',
+                        fontFamily: 'open-sans',
+                        fontWeight: 'bold',
+                        fontSize: '16px',
+                        lineHeight: '22px',
+                        borderWidth: '1px',
+                        borderColor: '#A9A9A9'
+                        // marginLeft: "20px",
+                        // fontSize: "18px",
+                      }}
+                      sx={{ mt: 1, mr: 1 }}
+                      // className={buttonClasses.root}
+                    >
+                      Back
+                    </Button>
+                    <Button
+                      variant='contained'
+                      onClick={handleNext}
+                      style={{
+                        borderRadius: '7px',
+                        backgroundColor: '#17A5CE',
+                        padding: '18px 36px',
+
+                        width: '100px',
+                        height: '45px',
+                        color: 'white',
+                        textAlign: 'center',
+                        fontFamily: 'open-sans',
+                        fontWeight: 'bold',
+                        fontSize: '16px',
+                        lineHeight: '22px',
+                        marginLeft: '20px'
+                        // fontSize: "18px",
+                      }}
+                      // color="primary"
+                      sx={{ mt: 1, ml: 20 }}
+                      className={buttonClasses.root}
+                    >
+                      {index === steps.length - 1 ? 'Finish' : 'Next'}
+                    </Button>
+                  </Container>
+                </StepContent>
+              </Step>
+            ))}
+          </Stepper>
+
+          {activeStep === steps.length && (
+            <Paper
+              square
+              elevation={0}
+              style={{ marginLeft: '20px', paddingBottom: '30px' }}
+            >
+              <Typography style={{ marginBottom: '20px' }}>
+                All steps completed - you&apos;re finished
+              </Typography>
+
+              <Button
+                // startIcon={<AddIcon />}
+                // color='primary'
+                style={{
+                  color: '#17A5CE',
+                  padding: '18px 36px',
+                  borderRadius: '7px',
+                  // marginTop: '20px',
+                  border: '1.5px solid #17A5CE',
+                  letterSpacing: '.75px',
+                  fontWeight: '700'
+                }}
+                sx={{ mt: 1, ml: 20 }}
+                variant='outlined'
+                onClick={handleReset}
+                className={buttonClasses.root}
+              >
+                Reset
+              </Button>
+              <Button
+                variant='contained'
+                onClick={handleNext}
+                style={{
+                  borderRadius: '7px',
+                  backgroundColor: '#17A5CE',
+                  padding: '18px 36px',
+
+                  // width: '100px',
+                  // height: '45px',,
+                  color: 'white',
+
+                  textAlign: 'center',
+                  fontFamily: 'open-sans',
+                  fontWeight: 'bold',
+                  fontSize: '16px',
+                  lineHeight: '22px',
+                  marginLeft: '20px'
+                  // fontSize: "18px",
+                }}
+                // style={{ color: 'white' }}
+                // color="primary"
+                sx={{ mt: 1, ml: 20 }}
+                className={buttonClasses.root}
+              >
+                Save
+              </Button>
+            </Paper>
+          )}
+        </Box>
+      </Paper>
     </div>
   )
 }
