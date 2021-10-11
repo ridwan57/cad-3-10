@@ -47,6 +47,7 @@ import TextField from '../Component/TextField'
 import ApplicantsRequirement from '../Component/ApplicantsRequirement'
 import { makeStyles } from '@mui/styles'
 import Quota from '../Component/Quota'
+import PhaseComponent from '../Component/PhaseComponent'
 const steps = [
   {
     label: "Applicant's Requirement",
@@ -104,7 +105,7 @@ const useStyles = makeStyles({
   }
 })
 export default function VerticalLinearStepper () {
-  const [activeStep, setActiveStep] = React.useState(0)
+  const [activeStep, setActiveStep] = React.useState(2)
   const buttonClasses = useStyles()
 
   const handleNext = () => {
@@ -148,7 +149,9 @@ export default function VerticalLinearStepper () {
                     // color: "red",
                   }}
                 >
-                  {index === 0 ? <ApplicantsRequirement /> : <Quota />}
+                  {index === 0 && <ApplicantsRequirement />}
+                  {index === 1 && <Quota />}
+                  {index === 2 && <PhaseComponent />}
                 </Container>
 
                 <Container
