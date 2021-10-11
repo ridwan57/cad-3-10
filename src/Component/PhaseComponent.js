@@ -17,6 +17,7 @@ import TimePicker from '@mui/lab/TimePicker'
 import DateTimePicker from '@mui/lab/DateTimePicker'
 import DesktopDatePicker from '@mui/lab/DesktopDatePicker'
 import MobileDatePicker from '@mui/lab/MobileDatePicker'
+import { DateComponent, TimeComponent } from './DataTimeComponent'
 
 const useStyles = makeStyles({
   keyboardPicker: {
@@ -61,43 +62,22 @@ const PhaseComponent = () => {
   const classes = useStyles()
   return (
     <Container fluid style={{ padding: '0px 250px 0px 250px' }}>
-      <Grid container spacing='5'>
-        <Grid item xs={6}>
-          <DesktopDatePicker
-            label='Date desktop'
-            inputFormat='MM/dd/yyyy'
-            placeholder='Time'
-            // value={value}
-            // onChange={handleChange}
-            // className={classes.keyboardPicker}
-            focused
-            renderInput={params => (
-              <TextField
-                {...params}
-                className={classes.keyboardPicker}
-                focused
-                fullWidth
-              />
-            )}
-          />
+      <Grid fluid container spacing='1' style={{ gap: 6 }}>
+        <Grid item xs={5}>
+          <DateComponent />
         </Grid>
-        <Grid item xs={6}>
-          <TimePicker
-            label='Time'
-            // value={value}
-            placeholder='Time☻'
-            // onChange={handleChange}
-            focused
-            // className={classes.keyboardPicker}
-            renderInput={params => (
-              <TextField
-                {...params}
-                className={classes.keyboardPicker}
-                focused
-                fullWidth
-              />
-            )}
-          />
+        <Grid item xs={5}>
+          <TimeComponent />
+        </Grid>
+        <Grid item xs='10' style={{ textAlign: 'center' }}>
+          To
+        </Grid>
+
+        <Grid item xs={5}>
+          <DateComponent />
+        </Grid>
+        <Grid item xs={5}>
+          <TimeComponent />
         </Grid>
       </Grid>
     </Container>
