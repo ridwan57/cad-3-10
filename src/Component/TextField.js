@@ -8,23 +8,7 @@ import { makeStyles } from '@mui/styles'
 function ColorTextFields (props) {
   const useStyles = makeStyles({
     root: {
-      // - The TextField-root
-      // border: "1px solid #C7C7C7", // - For demonstration: set the TextField-root border
-      // padding: "3px", // - Make the border more distinguishable
-
-      // (Note: space or no space after & matters. See SASS "parent selector".)
-      //   fontFamily: [
-      //   '-apple-system',
-      //   'BlinkMacSystemFont',
-      //   '"Segoe UI"',
-      //   'Roboto',
-      //   '"Helvetica Neue"',
-      //   'Arial',
-      //   'sans-serif',
-      //   '"Apple Color Emoji"',
-      //   '"Segoe UI Emoji"',
-      //   '"Segoe UI Symbol"',
-      // ].join(',')
+     
       '& label.Mui-focused': {
         color: '#17A5CE',
         padding: '2px 10px 0px 10px',
@@ -63,13 +47,15 @@ function ColorTextFields (props) {
 
   console.log('props:', props)
   const {
-    placeHolderName = 'Default',
+    placeHolderName = '',
     titleName = 'Default',
-    width = 'auto'
+    width = 'auto',
+    value
   } = props
   const classes = useStyles()
   return (
     <TextField
+      // multiline
       label={`${titleName}`}
       color='primary'
       // id=
@@ -82,6 +68,7 @@ function ColorTextFields (props) {
       }}
       fullWidth
       className={classes.root}
+      value={value}
       // color='se'
       focused
       placeholder={`${placeHolderName}`}

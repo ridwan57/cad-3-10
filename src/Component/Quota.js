@@ -2,7 +2,7 @@ import React from 'react'
 import Grid from '@material-ui/core/Grid'
 import { Table } from 'react-bootstrap'
 import { Checkbox, Button, Container } from '@material-ui/core'
-import { IconButton } from '@mui/material'
+import { IconButton, TextField } from '@mui/material'
 import Fab from '@mui/material/Fab'
 import { Collapse } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
@@ -10,15 +10,56 @@ import AddIcon from '@mui/icons-material/Add'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import { makeStyles } from '@mui/styles'
+import { ColorTextFields } from './TextField'
 
-// const useStyles = makeStyles({
-//   btn: {
-//     '& .MuiButton-outlinedPrimary': {
-//       color: '#17A5CE',
-//       backgroundColor: '#17A5CE'
-//     }
-//   }
-// })
+const useStyles = makeStyles({
+  collapseStyle: {
+    '& .MuiCollapse-wrapper': {
+      // color: '#17A5CE',
+      // backgroundColor: '#17A5CE',
+      width: '50%',
+      margin: '10px 30px 10px 40px'
+    }
+  },
+  btn: {
+    '& label.Mui-focused': {
+      color: '#17A5CE',
+      padding: '2px 10px 0px 10px',
+      letterSpacing: '.75px',
+      // backgroundColor: 'red',
+      // position: 'relative',
+      // width: '80px',
+      fontSize: '20px',
+      top: '-8px',
+
+      // color: "red",
+      backgroundColor: 'white'
+    },
+    '& .MuiOutlinedInput': {},
+    '& .MuiInputBase-input': {
+      // padding: '4px 17px',
+      marginTop: '-10px'
+      // maxWidth: '300px',
+      // backgroundColor: 'blue'
+    },
+    '& .MuiOutlinedInput-root': {
+      // color: "#17A5CE",
+      // - The Input-root, inside the TextField-root
+      '& fieldset': {
+        // - The <fieldset> inside the Input-root
+        // borderColor: "pink", // - Set the Input border
+      },
+      '&:hover fieldset': {
+        // borderColor: "yellow", // - Set the Input border when parent has :hover
+      },
+      '&.Mui-focused fieldset': {
+        // - Set the Input border when parent is focused
+        // borderColor: "green",
+        border: '1px solid #C7C7C7'
+      }
+    }
+  }
+})
 
 const quotas = [
   {
@@ -45,11 +86,11 @@ const quotas = [
 ]
 
 const Quota = () => {
-  // const classes = useStyles()
-  // const [id, setId] = React.useState(0)
-  // const handleChange = id => {
-  //   setId(id)
-  // }
+  const classes = useStyles()
+  const [id, setId] = React.useState(0)
+  const handleChange = id => {
+    setId(id)
+  }
   return (
     <>
       <Table
@@ -165,33 +206,80 @@ const Quota = () => {
                 </Fab>
               </td>
               <td>
-                <Fab
-                  // onClick={e => {
-                  //   setId(eachQuota.id)
-                  // }}
-                  sx={{ backgroundColor: 'rgba(106,106,106,0.15)' }}
-                  size='small'
-                >
-                  <KeyboardArrowDownIcon
-                    style={{ width: '0.88em', height: '0.88em' }}
-                  />
-                </Fab>
+                {id !== eachQuota.id ? (
+                  <Fab
+                    onClick={e => {
+                      if (id === eachQuota.id) {
+                        setId(null)
+                      } else setId(eachQuota.id)
+                    }}
+                    sx={{
+                      backgroundColor: 'rgba(106,106,106,0.15)',
+                      zIndex: 1
+                    }}
+                    size='small'
+                  >
+                    <KeyboardArrowDownIcon
+                      style={{ width: '0.88em', height: '0.88em' }}
+                    />
+                  </Fab>
+                ) : (
+                  <Fab
+                    onClick={e => {
+                      if (id === eachQuota.id) {
+                        setId(null)
+                      } else setId(eachQuota.id)
+                    }}
+                    sx={{
+                      backgroundColor: 'rgba(106,106,106,0.15)',
+                      zIndex: 1
+                    }}
+                    size='small'
+                  >
+                    <KeyboardArrowUpIcon
+                      style={{ width: '0.88em', height: '0.88em' }}
+                    />
+                  </Fab>
+                )}
               </td>
             </tr>
-            {/* <Collapse in={eachQuota.id === id}>
-            <h1>ok</h1>
-          </Collapse> */}
+            <tr>
+              <td colSpan='10'>
+                <Collapse
+                  // collapsedSize='large'
+                  in={eachQuota.id === id}
+                  xs={{}}
+                  className={classes.collapseStyle}
+                >
+                  <TextField
+                    className={classes.btn}
+                    multiline
+                    fullWidth
+                    focused
+                    label='Description'
+                    value='lorem epsfgss   ssssssssss ssssss  sssssss ss  ssssssssssss sssssssss sgffffffffff fffffffffff ffffffff ffffffffff f ffff fffff'
+                  />
+                </Collapse>
+              </td>
+            </tr>
           </>
         ))}
       </Table>
       <Button
-        // className={classes.btn}
+        className='text-capitalize'
         startIcon={<AddIcon />}
         // color='primary'
-        style={{ color: '#17A5CE', fontWeight: 'sembold', marginTop: '20px' }}
+        style={{
+          color: '#17A5CE',
+
+          marginTop: '20px',
+          border: '1.5px solid #17A5CE',
+          letterSpacing: '.75px',
+          fontWeight: '700'
+        }}
         variant='outlined'
       >
-        Add new quota
+        Add another Quota
       </Button>
     </>
   )
