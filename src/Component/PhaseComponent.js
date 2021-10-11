@@ -1,23 +1,17 @@
-import React from 'react'
-import DateFnsUtils from '@date-io/date-fns'
-import {
-  MuiPickersUtilsProvider,
-  KeyboardTimePicker,
-  KeyboardDatePicker
-} from '@material-ui/pickers'
-import { Grid, Container } from '@material-ui/core'
+import React, { useState } from 'react'
+
+import { Grid, Container, Button } from '@material-ui/core'
 import 'date-fns'
-import { ColorTextFields } from './TextField'
 import { makeStyles } from '@material-ui/styles'
 
-import TextField from '@mui/material/TextField'
-import AdapterDateFns from '@mui/lab/AdapterDateFns'
-import LocalizationProvider from '@mui/lab/LocalizationProvider'
-import TimePicker from '@mui/lab/TimePicker'
-import DateTimePicker from '@mui/lab/DateTimePicker'
-import DesktopDatePicker from '@mui/lab/DesktopDatePicker'
-import MobileDatePicker from '@mui/lab/MobileDatePicker'
 import { DateComponent, TimeComponent } from './DataTimeComponent'
+import AddIcon from '@mui/icons-material/Add'
+
+import Fab from '@mui/material/Fab'
+import { Collapse, Dialog, DialogTitle } from '@mui/material'
+
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 
 const useStyles = makeStyles({
   keyboardPicker: {
@@ -59,28 +53,131 @@ const useStyles = makeStyles({
 
 // .MuiOutlinedInput-input
 const PhaseComponent = () => {
+  const tasks = [
+    { title: 'Accepting Applications' },
+    { title: 'Migration result publishing' },
+    { title: 'Selecttion confirmatin by aplicant' }
+  ]
   const classes = useStyles()
-  return (
-    <Container fluid style={{ padding: '0px 250px 0px 250px' }}>
-      <Grid fluid container spacing='1' style={{ gap: 6 }}>
-        <Grid item xs={5}>
-          <DateComponent />
-        </Grid>
-        <Grid item xs={5}>
-          <TimeComponent />
-        </Grid>
-        <Grid item xs='10' style={{ textAlign: 'center' }}>
-          To
-        </Grid>
+  const phases = [1, 2]
+  const [id, setId] = React.useState(1)
+  const [openDialog, setOpenDialog] = useState(true)
+  const handleChange = id => {
+    setId(id)
+  }
 
-        <Grid item xs={5}>
-          <DateComponent />
-        </Grid>
-        <Grid item xs={5}>
-          <TimeComponent />
-        </Grid>
-      </Grid>
-    </Container>
+  return (
+    <>
+      {phases.map((phase, i) => (
+        <Container style={{ border: '1px solid #c7c7c7', marginLeft: '15px' }}>
+          <div className='d-flex justify-content-around mt-3'>
+            <h5 className='d-inline-block'>Phases {i + 1} </h5>
+            {id !== i ? (
+              <Fab
+                disableRipple
+                onClick={e => {
+                  if (id === i) {
+                    setId(null)
+                  } else setId(i)
+                }}
+                sx={{
+                  backgroundColor: 'white',
+                  boxShadow: 'none'
+                }}
+                style={{ marginLeft: 'auto', display: 'inline-block' }}
+                size='small'
+              >
+                <KeyboardArrowDownIcon
+
+                // style={{ width: '0.88em', height: '0.88em' }}
+                />
+              </Fab>
+            ) : (
+              <Fab
+                disableRipple
+                onClick={e => {
+                  if (id === i) {
+                    setId(null)
+                  } else setId(i)
+                }}
+                sx={{
+                  backgroundColor: 'white',
+                  boxShadow: 'none'
+                }}
+                style={{ marginLeft: 'auto', display: 'inline-block' }}
+                size='small'
+              >
+                <KeyboardArrowUpIcon
+
+                // style={{ width: '0.88em', height: '0.88em' }}
+                />
+              </Fab>
+            )}
+          </div>
+          <Collapse
+            // collapsedSize='large'
+            in={i === id}
+            xs={{}}
+            className={classes.collapseStyle}
+          >
+            {tasks.map((task, j) => (
+              <>
+                <span className='h4'>Task {j + 1}: </span>
+
+                <span style={{ color: '#17A5CE', marginLeft: '15px' }}>
+                  {task.title}
+                </span>
+                <Container
+                  fluid
+                  style={{
+                    padding: '20px 250px 15px 250px',
+                    margin: '10px 0px 10px 0px',
+                    borderBottom: '1px solid #c7c7c7'
+                  }}
+                >
+                  <Grid fluid container spacing='1' style={{ gap: 6 }}>
+                    <Grid item xs={5}>
+                      <DateComponent />
+                    </Grid>
+                    <Grid item xs={5}>
+                      <TimeComponent />
+                    </Grid>
+                    <Grid item xs='10' style={{ textAlign: 'center' }}>
+                      To
+                    </Grid>
+
+                    <Grid item xs={5}>
+                      <DateComponent />
+                    </Grid>
+                    <Grid item xs={5}>
+                      <TimeComponent />
+                    </Grid>
+                  </Grid>
+                </Container>
+              </>
+            ))}
+          </Collapse>
+        </Container>
+      ))}
+      <Button
+        className='text-capitalize'
+        startIcon={<AddIcon />}
+        // color='primary'
+        style={{
+          color: '#17A5CE',
+
+          marginTop: '20px',
+          marginLeft: '15px',
+          border: '1.5px solid #17A5CE',
+          letterSpacing: '.75px',
+          fontWeight: '700'
+        }}
+        variant='outlined'
+        // onClick={() => setOpenDialog(true)}
+      >
+        Add another Phase
+      </Button>
+    </>
   )
 }
 

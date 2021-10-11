@@ -61,7 +61,7 @@ const steps = [
       'An ad group contains one or more ads which target a shared set of keywords.'
   },
   {
-    label: 'Create an ad',
+    label: 'Phases of Application Processing',
     description: `Try out different ad text to see what brings in the most customers,
               and learn how to enhance your ads using features like ad extensions.
               If you run into any problems with your ads, find out how to tell if
@@ -128,31 +128,47 @@ export default function VerticalLinearStepper () {
             <Step key={step.label} className={buttonClasses.step}>
               <StepLabel
                 className={buttonClasses.stepLabel}
-                optional={
-                  index === 2 ? (
-                    <Typography variant='caption'>Last step</Typography>
-                  ) : null
-                }
+                // optional={
+                //   index === 2 ? (
+                //     <Typography variant='caption'>Last step</Typography>
+                //   ) : null
+                // }
               >
                 {step.label}
                 {/* <TextField /> */}
               </StepLabel>
 
               <StepContent>
-                <Container
-                  maxWidth='100%'
-                  style={{
-                    marginLeft: '-10px'
-                    // marginRight: "-10px",
-                    // paddingRight: "-50px",
-                    // backgroundColor: "black",
-                    // color: "red",
-                  }}
-                >
-                  {index === 0 && <ApplicantsRequirement />}
-                  {index === 1 && <Quota />}
-                  {index === 2 && <PhaseComponent />}
-                </Container>
+                {index === 0 && (
+                  <Container
+                    maxWidth='100%'
+                    style={{
+                      marginLeft: '-10px'
+                      // marginRight: "-10px",
+                      // paddingRight: "-50px",
+                      // backgroundColor: "black",
+                      // color: "red",
+                    }}
+                  >
+                    <ApplicantsRequirement />
+                  </Container>
+                )}
+                {index === 1 && (
+                  <Container
+                    maxWidth='100%'
+                    style={{
+                      marginLeft: '-10px'
+                      // marginRight: "-10px",
+                      // paddingRight: "-50px",
+                      // backgroundColor: "black",
+                      // color: "red",
+                    }}
+                  >
+                    <Quota />
+                  </Container>
+                )}
+
+                {index === 2 && <PhaseComponent />}
 
                 <Container
                   maxWidth='100%'
