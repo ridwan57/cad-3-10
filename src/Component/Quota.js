@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Grid from '@material-ui/core/Grid'
 import { Table } from 'react-bootstrap'
 import { Checkbox, Button, Container } from '@material-ui/core'
-import { IconButton, TextField } from '@mui/material'
+import { containerClasses, IconButton, TextField } from '@mui/material'
 import Fab from '@mui/material/Fab'
-import { Collapse } from '@mui/material'
+import { Collapse, Dialog, DialogTitle } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
 
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
@@ -21,7 +21,32 @@ const useStyles = makeStyles({
       margin: '10px 30px 10px 40px'
     }
   },
+  dialog: {
+    '& .css-m9glnp-MuiPaper-root-MuiDialog-paper': {
+      borderRadius: '10px',
+      // border: '1px solid rgba(0,0,0,.25)',
+      // border: '1px solid #999A9B',
+      boxShadow: '-5px -5px rgba(0, 0, 0, 0.05), 5px 5px rgba(0, 0, 0, 0.05)'
+      // boxShadow: '5px 5px #888888',
+    }
+  },
   btn: {
+    // background: "#17A5CE",
+    // backgroundColor: "#17A5CE",
+    // backgroundColor: "#000",
+    borderRadius: '7px',
+    border: 0,
+    color: 'white',
+    height: 48,
+    padding: '0 30px',
+    textAlign: 'center',
+    fontSize: '16 px',
+    '& .MuiButton-contained': {
+      backgroundColor: '#17A5CE',
+      color: '#17A5CE'
+    }
+  },
+  textField: {
     '& label.Mui-focused': {
       color: '#17A5CE',
       padding: '2px 10px 0px 10px',
@@ -88,11 +113,106 @@ const quotas = [
 const Quota = () => {
   const classes = useStyles()
   const [id, setId] = React.useState(0)
+  const [openDialog, setOpenDialog] = useState(true)
   const handleChange = id => {
     setId(id)
   }
   return (
     <>
+      {/* Dialog box */}
+
+      <Dialog
+        open={openDialog}
+        className={classes.dialog}
+        onClose={() => setOpenDialog(false)}
+        sx={{
+          width: '50vw',
+          height: '50vh',
+          m: 'auto auto',
+
+          p: 2
+        }}
+        fullScreen
+      >
+        <DialogTitle>Add Quota</DialogTitle>
+        <>
+          <Container>
+            <Grid container spacing={3}>
+              <Grid item xs={6}>
+                <TextField
+                  className={classes.textField}
+                  fullWidth
+                  focused
+                  label='Quota Name'
+                  placeholdre='Enter your text here'
+                />
+              </Grid>
+              <Grid item xs={6}>
+                <TextField
+                  className={classes.textField}
+                  // sx={{ marginLeft: '10px', width: '40%' }}
+                  fullWidth
+                  focused
+                  label='Quota Type'
+                  placeholdre='Enter from DropDown'
+                  InputProps={{ endAdornment: <KeyboardArrowDownIcon /> }}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  className={classes.textField}
+                  multiline
+                  rows={4}
+                  fullWidth
+                  focused
+                  label='Description'
+                  value='lorem epsfgss   ssssssssss ssssss  sssssss ss  ssssssssssss sssssssss sgffffffffff fffffffffff ffffffff ffffffffff f ffff fffff'
+                />
+              </Grid>
+              <Grid item xs={6}></Grid>
+              <Grid item xs={3}>
+                <Button
+                  variant='outlined'
+                  // sx={{ color: '#17A5CE' }}
+                  // color='primary'
+                  style={{
+                    backgroundColor: 'white',
+                    color: 'red',
+                    textTransform: 'capitalize',
+                    width: '90%',
+                    borderRadius: '7px',
+                    border: '1px solid red'
+                  }}
+                  onClick={() => setOpenDialog(false)}
+                >
+                  Cancel
+                </Button>
+              </Grid>
+              <Grid item xs={3}>
+                <Button
+                  variant='contained'
+                  color='success'
+                  // sx={{ color: '#17A5CE' }}
+                  // color='primary'
+                  style={{
+                    backgroundColor: '#17A5CE',
+                    color: 'white',
+                    textTransform: 'capitalize',
+                    width: '90%',
+                    borderRadius: '7px'
+                  }}
+                  onClick={() => setOpenDialog(false)}
+                >
+                  Save
+                </Button>
+              </Grid>
+            </Grid>
+          </Container>
+        </>
+      </Dialog>
+
+      {/* Dialog box */}
+
       <Table
         borderless
         responsive
@@ -129,7 +249,13 @@ const Quota = () => {
           <>
             <tr
               style={{
-                backgroundColor: `${i % 2 === 0 ? '#EAFAFF' : '#fff'}`,
+                backgroundColor: `${
+                  id === eachQuota.id
+                    ? '#E2E2E2'
+                    : i % 2 === 0
+                    ? '#EAFAFF'
+                    : '#fff'
+                }`,
                 height: '60px'
                 // border: '1px solid #C7c7c7'
               }}
@@ -252,7 +378,7 @@ const Quota = () => {
                   className={classes.collapseStyle}
                 >
                   <TextField
-                    className={classes.btn}
+                    className={classes.textField}
                     multiline
                     fullWidth
                     focused
@@ -278,6 +404,7 @@ const Quota = () => {
           fontWeight: '700'
         }}
         variant='outlined'
+        onClick={() => setOpenDialog(true)}
       >
         Add another Quota
       </Button>
