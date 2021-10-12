@@ -1,12 +1,7 @@
 // import * as React from "react";
 import Box from '@mui/material/Box'
-// import Stepper from "@mui/material/Stepper";
-// import Step from "@mui/material/Step";
-// import StepLabel from "@mui/material/StepLabel";
-// import StepContent from "@mui/material/StepContent";
-// import Button from "@mui/material/Button";
-// import Paper from "@mui/material/Paper";
-// import Typography from "@mui/material/Typography";
+import DoubleArrowIcon from '@mui/icons-material/DoubleArrow'
+
 import React, { useState, useEffect } from 'react'
 import {
   Dialog,
@@ -48,9 +43,12 @@ import ApplicantsRequirement from '../Component/ApplicantsRequirement'
 import { makeStyles } from '@mui/styles'
 import Quota from '../Component/Quota'
 import PhaseComponent from '../Component/PhaseComponent'
+import Breadcrumbs from '@mui/material/Breadcrumbs'
+import Link from '@mui/material/Link'
+
 const steps = [
   {
-    label: "Applicant's Requirement",
+    label: 'Application Configuration',
     description: `For each ad campaign that you create, you can control how much
               you're willing to spend on clicks and conversions, which networks
               and geographical locations you want your ads to show on, and more.`
@@ -88,11 +86,23 @@ const useStyles = makeStyles({
   step: {
     // .MuiSvgIcon-root .MuiStepIcon-root
     '&  .MuiStepIcon-root.MuiStepIcon-active': {
-      color: '#17A5CE'
+      color: '#17A5CE',
       // backgroundColor: '#17A5CE'
+      fontSize: '30px',
+      marginLeft: '-3px'
     },
     '& .MuiStepIcon-root.MuiStepIcon-completed': {
-      color: '#17A5CE'
+      color: '#17A5CE',
+      fontSize: '30px',
+      marginLeft: '-3px'
+    },
+    '& .MuiStepLabel-label.MuiStepLabel-disabled': {
+      fontSize: '30px',
+      marginLeft: '-3px'
+    },
+    '.MuiStepIcon-root.MuiStepIcon-disabled': {
+      fontSize: '30px',
+      marginLeft: '-3px'
     }
   },
   stepLabel: {
@@ -101,11 +111,19 @@ const useStyles = makeStyles({
     },
     '& .MuiStepLabel-label.MuiStepLabel-completed': {
       fontWeight: 'bold'
+    },
+    '& .MuiStepLabel-label.MuiStepLabel-disabled': {
+      fontSize: '30px',
+      marginLeft: '-3px'
+    },
+    '.MuiStepIcon-root.MuiStepIcon-disabled': {
+      fontSize: '30px',
+      marginLeft: '-3px'
     }
   }
 })
 export default function VerticalLinearStepper () {
-  const [activeStep, setActiveStep] = React.useState(2)
+  const [activeStep, setActiveStep] = React.useState(1)
   const buttonClasses = useStyles()
 
   const handleNext = () => {
@@ -122,20 +140,46 @@ export default function VerticalLinearStepper () {
 
   return (
     <div style={{ marginLeft: '100px' }}>
-      <Paper rounded>
+      <Breadcrumbs
+        aria-label='breadcrumb'
+        separator={
+          <DoubleArrowIcon
+            size='small'
+            style={{ width: '100%', color: 'rgba(160, 154, 157, 0.8)' }}
+          />
+        }
+        style={{ margin: '10px 0px 0px 15px' }}
+      >
+        <Link underline='hover' color='primary' href='/'>
+          Settings
+        </Link>
+        {/* <Link
+          underline='hover'
+          color='primary'
+          href='/getting-started/installation/'
+        >
+          Create Announcements
+        </Link> */}
+      </Breadcrumbs>
+
+      <Paper style={{ margin: '20px' }} elevation='4'>
+        <h3 style={{ letterSpacing: '10', padding: '20px 0px 0px 20px' }}>
+          Settings
+        </h3>
         <Box sx={{ width: '100%' }}>
           <Stepper activeStep={activeStep} orientation='vertical'>
             {steps.map((step, index) => (
               <Step key={step.label} className={buttonClasses.step}>
                 <StepLabel
                   className={buttonClasses.stepLabel}
+                  // style={{ marginBottom: '10px' }}
                   // optional={
                   //   index === 2 ? (
                   //     <Typography variant='caption'>Last step</Typography>
                   //   ) : null
                   // }
                 >
-                  {step.label}
+                  <span style={{ marginLeft: '15px' }}>{step.label}</span>
                   {/* <TextField /> */}
                 </StepLabel>
 
@@ -144,7 +188,8 @@ export default function VerticalLinearStepper () {
                     <Container
                       maxWidth='100%'
                       style={{
-                        marginLeft: '-10px'
+                        marginLeft: '-10px',
+                        marginTop: '20px'
                         // marginRight: "-10px",
                         // paddingRight: "-50px",
                         // backgroundColor: "black",

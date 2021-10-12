@@ -56,11 +56,11 @@ const useStyles = makeStyles({
   }
 })
 
-const DateComponent = () => {
+const DateComponent = ({ name }) => {
   const classes = useStyles()
   return (
     <DesktopDatePicker
-      label='Date desktop'
+      label={name}
       inputFormat='MM/dd/yyyy'
       placeholder='Time'
       // value={value}
@@ -85,7 +85,7 @@ const TimeComponent = () => {
     <TimePicker
       label='Time'
       // value={value}
-      placeholder='Time☻'
+      placeholder='Time'
       // onChange={handleChange}
       focused
       // className={classes.keyboardPicker}

@@ -97,23 +97,41 @@ const useStyles = makeStyles({
 const quotas = [
   {
     id: 1,
-    name: 'freedom',
+    name: 'Freedom Fighter Quota',
     percentage: 20,
     unSeats: 12,
+    description:
+      'Lorem ipsum dolor sit amet, populo delicatissimi  interpretaris ea cum. Mutat pertinax assentior ea   eam, ea atqui consul ius. Eum prima debitis ei. Eu est libris regione gubergren, democritum reprimique pri id. Cu qui regione patrioque.',
     q: ['G']
   },
   {
     id: 2,
-    name: 'freedom',
+    name: 'Own Quota',
     percentage: 20,
     unSeats: 12,
-    q: ['S']
+    description:
+      'Lorem ipsum dolor sit amet, populo delicatissimi  interpretaris ea cum. Mutat pertinax assentior ea   eam, ea atqui consul ius. Eum prima debitis ei. Eu est libris regione gubergren, democritum reprimique pri id. Cu qui regione patrioque.',
+
+    q: ['G']
   },
   {
     id: 3,
-    name: 'freedom',
+    name: 'Special Quota',
+    percentage: 5,
+    unSeats: 12,
+    description:
+      'Lorem ipsum dolor sit amet, populo delicatissimi  interpretaris ea cum. Mutat pertinax assentior ea   eam, ea atqui consul ius. Eum prima debitis ei. Eu est libris regione gubergren, democritum reprimique pri id. Cu qui regione patrioque.',
+
+    q: ['S']
+  },
+  {
+    id: 4,
+    name: 'General Quota',
     percentage: 20,
     unSeats: 12,
+    description:
+      'Lorem ipsum dolor sit amet, populo delicatissimi  interpretaris ea cum. Mutat pertinax assentior ea   eam, ea atqui consul ius. Eum prima debitis ei. Eu est libris regione gubergren, democritum reprimique pri id. Cu qui regione patrioque.',
+
     q: ['G']
   }
 ]
@@ -121,7 +139,7 @@ const quotas = [
 const Quota = () => {
   const classes = useStyles()
   const [id, setId] = React.useState(0)
-  const [openDialog, setOpenDialog] = useState(true)
+  const [openDialog, setOpenDialog] = useState(false)
   const handleChange = id => {
     setId(id)
   }
@@ -195,7 +213,7 @@ const Quota = () => {
                   fullWidth
                   focused
                   label='Description'
-                  value='Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.'
+                  // value=''
                 />
               </Grid>
               <Grid item xs={6}></Grid>
@@ -248,7 +266,11 @@ const Quota = () => {
         // bordered
 
         className='table-centered rounded mb-0 overflow-hidden text-center'
-        style={{ borderSpacing: 0, borderCollapse: 'separate' }}
+        style={{
+          borderSpacing: 0,
+          borderCollapse: 'collapse',
+          border: '0px solid #fff'
+        }}
       >
         <thead
           className='thead-light'
@@ -285,10 +307,10 @@ const Quota = () => {
                     ? '#EAFAFF'
                     : '#fff'
                 }`,
-                height: '60px'
-                // border: '1px solid #C7c7c7'
+                height: '60px',
+                borderBottom: '1px solid #C7c7c7'
               }}
-              className='border-2'
+              // className='border-2'
             >
               <td>{eachQuota.id}</td>
               <td>{eachQuota.name}</td>
@@ -398,23 +420,35 @@ const Quota = () => {
                 )}
               </td>
             </tr>
-            <tr>
+            <tr
+              // className='mt-10'
+              style={{
+                // display: `${eachQuota.id !== id ? 'none' : 'table-row'}`,
+                visibility: `${eachQuota.id !== id ? 'collapse' : 'visible'}`,
+                // visibility: 'hidden',
+                // visibility: 'collapse',
+                // maxHeight: '0px',
+                transition: 'all  .2s cubic-bezier(0.24, 0.6, 1, 1.66)'
+              }}
+            >
               <td colSpan='10'>
-                <Collapse
-                  // collapsedSize='large'
-                  in={eachQuota.id === id}
-                  xs={{}}
-                  className={classes.collapseStyle}
-                >
-                  <TextField
-                    className={classes.textField}
-                    multiline
-                    fullWidth
-                    focused
-                    label='Description'
-                    value='lorem epsfgss   ssssssssss ssssss  sssssss ss  ssssssssssss sssssssss sgffffffffff fffffffffff ffffffff ffffffffff f ffff fffff'
-                  />
-                </Collapse>
+                <div>
+                  <Collapse
+                    // collapsedSize='large'
+                    in={eachQuota.id === id}
+                    xs={{}}
+                    className={classes.collapseStyle}
+                  >
+                    <TextField
+                      className={classes.textField}
+                      multiline
+                      fullWidth
+                      focused
+                      label='Description'
+                      value={eachQuota.description}
+                    />
+                  </Collapse>
+                </div>
               </td>
             </tr>
           </>

@@ -8,7 +8,6 @@ import { makeStyles } from '@mui/styles'
 function ColorTextFields (props) {
   const useStyles = makeStyles({
     root: {
-     
       '& label.Mui-focused': {
         color: '#17A5CE',
         padding: '2px 10px 0px 10px',
@@ -80,7 +79,7 @@ function SpanText (props) {
     spanText: {
       fontFamily: 'Open-Sans',
       fontStyle: 'Regular',
-      fontSize: '16px',
+      fontSize: '18px',
       lineHeight: '25px',
       letterSpacing: '0.75px',
 

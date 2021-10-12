@@ -6,6 +6,8 @@ import { makeStyles } from '@material-ui/styles'
 
 import { DateComponent, TimeComponent } from './DataTimeComponent'
 import AddIcon from '@mui/icons-material/Add'
+import DoneOutlineRoundedIcon from '@mui/icons-material/DoneOutlineRounded'
+import CancelIcon from '@mui/icons-material/Cancel'
 
 import Fab from '@mui/material/Fab'
 import { Collapse, Dialog, DialogTitle } from '@mui/material'
@@ -14,6 +16,20 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 
 const useStyles = makeStyles({
+  // disabled: {
+  //   '& .MuiButtonBase-root.Mui-disabled': {
+  //     backgroundColor: 'red'
+  //   },
+  //   '& .Mui-disabled': {
+  //     backgroundColor: 'red'
+  //   }
+  // },
+  fab: {
+    '&$disabled': {
+      backgroundColor: 'red'
+    }
+  },
+  disabled: {},
   keyboardPicker: {
     '& label.Mui-focused': {
       color: '#17A5CE',
@@ -72,12 +88,12 @@ const PhaseComponent = () => {
         <Container style={{ border: '1px solid #c7c7c7', marginLeft: '15px' }}>
           <div
             className='d-flex justify-content-around mt-3 p-2'
-            style={{ backgroundColor: `${i === id ? '#E2E2E2' : '#fff'}` }}
+            style={{ backgroundColor: '#fff' }}
           >
             <h5 className='d-inline-block'>Phases {i + 1} </h5>
             {id !== i ? (
               <Fab
-                disableRipple
+                // disabled
                 onClick={e => {
                   if (id === i) {
                     setId(null)
@@ -97,7 +113,7 @@ const PhaseComponent = () => {
               </Fab>
             ) : (
               <Fab
-                disableRipple
+                className={classes.disabled}
                 onClick={e => {
                   if (id === i) {
                     setId(null)
@@ -111,8 +127,9 @@ const PhaseComponent = () => {
                 size='small'
               >
                 <KeyboardArrowUpIcon
+                  className={classes.disabled}
 
-                // style={{ width: '0.88em', height: '0.88em' }}
+                  // style={{ width: '0.88em', height: '0.88em' }}
                 />
               </Fab>
             )}
@@ -123,42 +140,124 @@ const PhaseComponent = () => {
             xs={{}}
             className={classes.collapseStyle}
           >
-            {tasks.map((task, j) => (
-              <>
-                <span className='h4'>Task {j + 1}: </span>
+            {/* {tasks.map((task, j) => ( */}
+            {/* Task 1 */}
+            <>
+              <span
+                className='h5'
+                style={{
+                  marginLeft: '15px'
+                }}
+              >
+                Task 1:{' '}
+              </span>
 
-                <span style={{ color: '#17A5CE', marginLeft: '15px' }}>
-                  {task.title}
-                </span>
-                <Container
-                  fluid
-                  style={{
-                    padding: '20px 250px 15px 250px',
-                    margin: '10px 0px 10px 0px',
-                    borderBottom: '1px solid #c7c7c7'
-                  }}
-                >
-                  <Grid fluid container spacing='1' style={{ gap: 6 }}>
-                    <Grid item xs={5}>
-                      <DateComponent />
-                    </Grid>
-                    <Grid item xs={5}>
-                      <TimeComponent />
-                    </Grid>
-                    <Grid item xs='10' style={{ textAlign: 'center' }}>
-                      To
-                    </Grid>
-
-                    <Grid item xs={5}>
-                      <DateComponent />
-                    </Grid>
-                    <Grid item xs={5}>
-                      <TimeComponent />
-                    </Grid>
+              <span style={{ color: '#17A5CE', marginLeft: '15px' }}>
+                Accepting Applications
+              </span>
+              <Container
+                fluid
+                style={{
+                  padding: '20px 250px 15px 250px',
+                  margin: '10px 0px 10px 0px',
+                  borderBottom: '1px solid #c7c7c7'
+                }}
+              >
+                <Grid fluid container spacing='1' style={{ gap: 6 }}>
+                  <Grid item xs={5}>
+                    <DateComponent name='Start Date' />
                   </Grid>
-                </Container>
-              </>
-            ))}
+                  <Grid item xs={5}>
+                    <TimeComponent />
+                  </Grid>
+                  <Grid item xs='10' style={{ textAlign: 'center' }}>
+                    To
+                  </Grid>
+
+                  <Grid item xs={5}>
+                    <DateComponent name='End Date' />
+                  </Grid>
+                  <Grid item xs={5}>
+                    <TimeComponent />
+                  </Grid>
+                </Grid>
+              </Container>
+            </>
+            {/* Task 2 */}
+            <>
+              <span
+                className='h5'
+                style={{
+                  marginLeft: '15px'
+                }}
+              >
+                Task 2:{' '}
+              </span>
+
+              <span style={{ color: '#17A5CE', marginLeft: '15px' }}>
+                Migration result publishing
+              </span>
+              <Container
+                fluid
+                style={{
+                  padding: '20px 250px 15px 250px',
+                  margin: '10px 0px 10px 0px',
+                  borderBottom: '1px solid #c7c7c7'
+                }}
+              >
+                <Grid fluid container spacing='1' style={{ gap: 6 }}>
+                  <Grid item xs={5}>
+                    <DateComponent name='Date' />
+                  </Grid>
+                  <Grid item xs={5}>
+                    <TimeComponent />
+                  </Grid>
+                </Grid>
+              </Container>
+            </>
+            {/* Task 3 */}
+            <>
+              <span
+                className='h5'
+                style={{
+                  marginLeft: '15px'
+                }}
+              >
+                Task 3:{' '}
+              </span>
+
+              <span style={{ color: '#17A5CE', marginLeft: '15px' }}>
+                Selecttion confirmatin by aplicant
+              </span>
+              <Container
+                fluid
+                style={{
+                  padding: '20px 250px 15px 250px',
+                  margin: '10px 0px 10px 0px'
+                  // borderBottom: '1px solid #c7c7c7'
+                }}
+              >
+                <Grid fluid container spacing='1' style={{ gap: 6 }}>
+                  <Grid item xs={5}>
+                    <DateComponent name='Start Date' />
+                  </Grid>
+                  <Grid item xs={5}>
+                    <TimeComponent />
+                  </Grid>
+                  <Grid item xs='10' style={{ textAlign: 'center' }}>
+                    To
+                  </Grid>
+
+                  <Grid item xs={5}>
+                    <DateComponent name='End Date' />
+                  </Grid>
+                  <Grid item xs={5}>
+                    <TimeComponent />
+                  </Grid>
+                </Grid>
+              </Container>
+            </>
+            {/* ))} */}
           </Collapse>
         </Container>
       ))}

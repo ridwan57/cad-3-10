@@ -11,40 +11,40 @@ function ApplicantsRequirement () {
       spanText: 'SSC pass year for general boards:',
       textFieldsOne: {
         titleName: 'Minimum',
-        placeHolderName: 'Enter year here'
+        placeHolderName: 'Enter year here....'
       },
       textFieldsTwo: {
         titleName: 'Maximum',
-        placeHolderName: 'Enter year here'
+        placeHolderName: 'Enter year here....'
       }
     },
     {
       spanText: 'SSC pass year for BOU:',
       textFieldsOne: {
         titleName: 'Minimum',
-        placeHolderName: 'Enter year here'
+        placeHolderName: 'Enter year here....'
       },
       textFieldsTwo: {
         titleName: 'Maximum',
-        placeHolderName: 'Enter year here'
+        placeHolderName: 'Enter year here....'
       }
     },
     {
-      spanText: 'Number of choices by an Applicant:',
+      spanText: 'Number of choices by an applicant:',
       textFieldsOne: {
         titleName: 'Minimum',
-        placeHolderName: 'Enter year here'
+        placeHolderName: 'Enter year here....'
       },
       textFieldsTwo: {
         titleName: 'Maximum',
-        placeHolderName: 'Enter year here'
+        placeHolderName: 'Enter year here....'
       }
     },
     {
       spanText: 'Application fee:',
       textFieldsOne: {
         titleName: 'Amount',
-        placeHolderName: 'Enter amount'
+        placeHolderName: 'Enter amount here....'
       }
       //   textFieldsTwo: {
       //     titleName: "Minimum",
@@ -52,17 +52,25 @@ function ApplicantsRequirement () {
       //   },
     },
     {
-      spanText: 'Register fee:',
+      spanText: 'Registration fee:',
       textFieldsOne: {
         titleName: 'Amount',
-        placeHolderName: 'Enter amount'
+        placeHolderName: 'Enter amount here....'
       }
       //   textFieldsTwo: { titleName: "Minimum", placeHolderName: "Enter year here" },
     }
   ]
 
   return (
-    <Grid container spacing={3}>
+    <Grid
+      container
+      spacing={3}
+      style={{
+        display: 'flex',
+        // justifyContent: 'center',
+        alignItems: 'center'
+      }}
+    >
       {appReqData.map(obj => {
         const { spanText, textFieldsOne, textFieldsTwo } = obj
         const text = spanText
@@ -76,13 +84,13 @@ function ApplicantsRequirement () {
         }
         return (
           <>
-            <Grid item xs={12} sm={5}>
+            <Grid item xs={12} md={5}>
               <SpanText text={text} />
             </Grid>
-            <Grid item xs={12} sm={3.5}>
+            <Grid item xs={12} md={3.5}>
               <ColorTextFields {...propsOne} />
             </Grid>
-            <Grid item xs={12} sm={3.5}>
+            <Grid item xs={12} md={3.5}>
               {textFieldsTwo && <ColorTextFields {...propsTwo} />}
             </Grid>
           </>
