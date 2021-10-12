@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import Grid from '@material-ui/core/Grid'
 import { Table } from 'react-bootstrap'
+import clsx from 'clsx'
+
 import {
   Checkbox,
   Button,
@@ -154,28 +156,42 @@ const Quota = () => {
         className={classes.dialog}
         onClose={() => setOpenDialog(false)}
         sx={{
-          width: '50vw',
-          height: '50vh',
+          maxWidth: '900px',
+          maxHeight: '450px',
           m: 'auto auto',
 
-          p: 2
+          p: 5
         }}
         fullScreen
       >
         <DialogTitle>Add Quota</DialogTitle>
         <>
           <Container>
-            <Grid container spacing={3}>
-              <Grid item xs={6}>
+            <Grid
+              container
+              spacing={3}
+              direction='row'
+              justifyContent='space-around'
+              alignItems='center'
+            >
+              <Grid
+                item
+                xs={6}
+                style={{ marginBottom: '20px', marginTop: '10px' }}
+              >
                 <TextField
                   className={classes.textField}
                   fullWidth
                   focused
                   label='Quota Name'
-                  placeholdre='Enter your text here'
+                  placeholder='Enter your text here..'
                 />
               </Grid>
-              <Grid item xs={6}>
+              <Grid
+                item
+                xs={6}
+                style={{ marginBottom: '20px', marginTop: '10px' }}
+              >
                 <FormControl fullWidth variant='standard'>
                   <TextField
                     select
@@ -183,14 +199,28 @@ const Quota = () => {
                     className={classes.textField}
                     fullWidth
                     focused
+                    defaultValue='default'
                     // sx={{ width: '100%' }}
                     SelectProps={{
-                      multiple: true,
-                      value: []
+                      variant: 'filled',
+                      color: 'primary'
+                      // multiple: true,
+                      // value: []
+                      // label: 'gfgg'
+                      // displayEmpty: 'true'
                     }}
                   >
-                    <MenuItem value=''>
-                      <em>None</em>
+                    <MenuItem
+                      // className={clsx(
+                      //   classes.menuitem,
+                      //   !showPlaceholder ? classes.menuitemhidden : null
+                      // )}
+                      key='0'
+                      disabled
+                      defaultChecked
+                      value='default'
+                    >
+                      Select from dropdown...
                     </MenuItem>
                     <MenuItem value={'general'}>General</MenuItem>
                     <MenuItem value={'special'}>Special</MenuItem>
@@ -214,6 +244,7 @@ const Quota = () => {
                   rows={4}
                   fullWidth
                   focused
+                  placeholder='Enter your text here...'
                   label='Description'
                   // value=''
                 />
@@ -450,7 +481,8 @@ const Quota = () => {
                 // visibility: 'hidden',
                 // visibility: 'collapse',
                 // maxHeight: '0px',
-                transition: 'all  .2s cubic-bezier(0.24, 0.6, 1, 1.66)'
+                transition: 'all  .3s cubic-bezier(0.66, 0.77, 0.02, .63)'
+                // cubic - bezier(0.66, 0.77, 0.55, 1.06)
               }}
             >
               <td colSpan='10'>

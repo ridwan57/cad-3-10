@@ -64,6 +64,9 @@ const steps = [
               and learn how to enhance your ads using features like ad extensions.
               If you run into any problems with your ads, find out how to tell if
               they're running and how to resolve approval issues.`
+  },
+  {
+    label: 'Result Data Syncronization Criteria'
   }
 ]
 const useStyles = makeStyles({
@@ -123,7 +126,7 @@ const useStyles = makeStyles({
   }
 })
 export default function VerticalLinearStepper () {
-  const [activeStep, setActiveStep] = React.useState(1)
+  const [activeStep, setActiveStep] = React.useState(0)
   const buttonClasses = useStyles()
 
   const handleNext = () => {
@@ -301,7 +304,7 @@ export default function VerticalLinearStepper () {
               style={{ marginLeft: '20px', paddingBottom: '30px' }}
             >
               <Typography style={{ marginBottom: '20px' }}>
-                All steps completed - you&apos;re finished
+                All steps completed - Do you want to save the Announcements?
               </Typography>
 
               <Button

@@ -85,9 +85,15 @@ const PhaseComponent = () => {
   return (
     <>
       {phases.map((phase, i) => (
-        <Container style={{ border: '1px solid #c7c7c7', marginLeft: '-10px' }}>
+        <Container
+          style={{
+            border: '1px solid #c7c7c7',
+            borderRadius: '7px',
+            marginLeft: '-10px'
+          }}
+        >
           <div
-            className='d-flex justify-content-around mt-3 p-2'
+            className='d-flex justify-content-around mt-3 p-2 align-items-center'
             style={{ backgroundColor: '#fff' }}
           >
             <h5
@@ -106,9 +112,15 @@ const PhaseComponent = () => {
                 }}
                 sx={{
                   backgroundColor: 'white',
-                  boxShadow: 'none'
+                  boxShadow: 'none',
+                  top: '-5px'
+                  // alignItems: 'flex-start'
                 }}
-                style={{ marginLeft: 'auto', display: 'inline-block' }}
+                style={{
+                  marginLeft: 'auto',
+                  display: 'inline-block'
+                  // paddingBottom: '20px'
+                }}
                 size='small'
               >
                 <KeyboardArrowDownIcon
@@ -126,7 +138,8 @@ const PhaseComponent = () => {
                 }}
                 sx={{
                   backgroundColor: 'white',
-                  boxShadow: 'none'
+                  boxShadow: 'none',
+                  top: '-5px'
                 }}
                 style={{ marginLeft: 'auto', display: 'inline-block' }}
                 size='small'
