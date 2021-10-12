@@ -203,7 +203,9 @@ export default function VerticalLinearStepper () {
                     <Container
                       maxWidth='100%'
                       style={{
-                        marginLeft: '-10px'
+                        marginLeft: '-10px',
+                        marginTop: '10px'
+
                         // marginRight: "-10px",
                         // paddingRight: "-50px",
                         // backgroundColor: "black",
@@ -213,8 +215,23 @@ export default function VerticalLinearStepper () {
                       <Quota />
                     </Container>
                   )}
+                  {index === 2 && (
+                    <Container
+                      maxWidth='100%'
+                      style={{
+                        marginTop: '20px'
+                        // marginLeft: '-10px'
+                        // marginRight: "-10px",
+                        // paddingRight: "-50px",
+                        // backgroundColor: "black",
+                        // color: "red",
+                      }}
+                    >
+                      <PhaseComponent />
+                    </Container>
+                  )}
 
-                  {index === 2 && <PhaseComponent />}
+                  {/* {index === 2 && <PhaseComponent />} */}
 
                   <Container
                     maxWidth='100%'

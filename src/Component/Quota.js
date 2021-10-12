@@ -25,8 +25,8 @@ const useStyles = makeStyles({
     '& .MuiCollapse-wrapper': {
       // color: '#17A5CE',
       // backgroundColor: '#17A5CE',
-      width: '50%',
-      margin: '10px 30px 10px 40px'
+      width: '80%',
+      margin: '20px 30px 20px 40px'
     }
   },
   dialog: {
@@ -59,6 +59,7 @@ const useStyles = makeStyles({
       color: '#17A5CE',
       padding: '2px 10px 0px 10px',
       letterSpacing: '.75px',
+
       // backgroundColor: 'red',
       // position: 'relative',
       // width: '80px',
@@ -72,6 +73,7 @@ const useStyles = makeStyles({
     '& .MuiInputBase-input': {
       // padding: '4px 17px',
       marginTop: '-10px'
+
       // maxWidth: '300px',
       // backgroundColor: 'blue'
     },
@@ -88,7 +90,7 @@ const useStyles = makeStyles({
       '&.Mui-focused fieldset': {
         // - Set the Input border when parent is focused
         // borderColor: "green",
-        border: '1px solid #C7C7C7'
+        border: '2px solid rgba(199, 199, 199, .7)'
       }
     }
   }
@@ -368,19 +370,39 @@ const Quota = () => {
                 ></Checkbox>
               </td>
               <td>
-                <Fab
-                  sx={{ backgroundColor: 'rgba(106,106,106,0.15)' }}
-                  size='small'
+                <div
+                  style={{ display: 'flex', justifyContent: 'space-evenly' }}
                 >
-                  <KeyboardArrowDownIcon
-                    style={{ width: '0.88em', height: '0.88em' }}
-                  />
-                </Fab>
-                <Fab sx={{ backgroundColor: 'red' }} size='small'>
-                  <KeyboardArrowUpIcon
-                    style={{ width: '0.88em', height: '0.88em' }}
-                  />
-                </Fab>
+                  <Fab
+                    sx={{
+                      backgroundColor: 'rgba(0, 0, 0, 0.1)',
+                      boxShadow: 'none',
+                      color: 'rgba(0,0,0,0.75)',
+                      marginTop: '0px'
+                    }}
+                    size='small'
+                  >
+                    <KeyboardArrowUpIcon
+                    // style={{ width: '0.88em', height: '0.88em' }}
+                    />
+                  </Fab>
+                  {/* rgba(23, 165, 206, 1) */}
+
+                  <Fab
+                    sx={{
+                      backgroundColor: 'rgba(23, 165, 206, 0.1)',
+                      boxShadow: 'none',
+                      color: 'rgba(23, 165, 206,95)',
+                      marginTop: '0px'
+                    }}
+                    size='small'
+                  >
+                    <KeyboardArrowDownIcon
+
+                    // style={{ width: '0.88em', height: '0.88em' }}
+                    />
+                  </Fab>
+                </div>
               </td>
               <td>
                 {id !== eachQuota.id ? (
@@ -441,6 +463,8 @@ const Quota = () => {
                   >
                     <TextField
                       className={classes.textField}
+                      sx={{ borderRadius: '10px' }}
+                      style={{ borderRadius: '10px' }}
                       multiline
                       fullWidth
                       focused

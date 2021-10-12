@@ -71,6 +71,7 @@ const DateComponent = ({ name }) => {
         <TextField
           {...params}
           className={classes.keyboardPicker}
+          style={{ maxWidth: '300px' }}
           focused
           fullWidth
         />
@@ -93,6 +94,7 @@ const TimeComponent = () => {
         <TextField
           {...params}
           className={classes.keyboardPicker}
+          style={{ maxWidth: '300px' }}
           focused
           fullWidth
         />

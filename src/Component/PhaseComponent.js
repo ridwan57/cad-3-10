@@ -76,7 +76,7 @@ const PhaseComponent = () => {
   ]
   const classes = useStyles()
   const phases = [1, 2]
-  const [id, setId] = React.useState(1)
+  const [id, setId] = React.useState(2)
   const [openDialog, setOpenDialog] = useState(true)
   const handleChange = id => {
     setId(id)
@@ -85,12 +85,17 @@ const PhaseComponent = () => {
   return (
     <>
       {phases.map((phase, i) => (
-        <Container style={{ border: '1px solid #c7c7c7', marginLeft: '15px' }}>
+        <Container style={{ border: '1px solid #c7c7c7', marginLeft: '-10px' }}>
           <div
             className='d-flex justify-content-around mt-3 p-2'
             style={{ backgroundColor: '#fff' }}
           >
-            <h5 className='d-inline-block'>Phases {i + 1} </h5>
+            <h5
+              className='d-inline-block'
+              style={{ color: 'rgba(74, 72, 72, 1)' }}
+            >
+              Phases {i + 1}{' '}
+            </h5>
             {id !== i ? (
               <Fab
                 // disabled
@@ -146,7 +151,8 @@ const PhaseComponent = () => {
               <span
                 className='h5'
                 style={{
-                  marginLeft: '15px'
+                  marginLeft: '15px',
+                  color: 'rgba(74, 72, 72, .8)'
                 }}
               >
                 Task 1:{' '}
@@ -158,26 +164,42 @@ const PhaseComponent = () => {
               <Container
                 fluid
                 style={{
-                  padding: '20px 250px 15px 250px',
+                  padding: '20px 50px 15px 50px',
                   margin: '10px 0px 10px 0px',
                   borderBottom: '1px solid #c7c7c7'
                 }}
               >
                 <Grid fluid container spacing='1' style={{ gap: 6 }}>
-                  <Grid item xs={5}>
+                  <Grid
+                    item
+                    xs={5}
+                    style={{ display: 'flex', justifyContent: 'flex-end' }}
+                  >
                     <DateComponent name='Start Date' />
                   </Grid>
-                  <Grid item xs={5}>
+                  <Grid
+                    item
+                    xs={5}
+                    style={{ display: 'flex', justifyContent: 'flex-start' }}
+                  >
                     <TimeComponent />
                   </Grid>
                   <Grid item xs='10' style={{ textAlign: 'center' }}>
                     To
                   </Grid>
 
-                  <Grid item xs={5}>
+                  <Grid
+                    item
+                    xs={5}
+                    style={{ display: 'flex', justifyContent: 'flex-end' }}
+                  >
                     <DateComponent name='End Date' />
                   </Grid>
-                  <Grid item xs={5}>
+                  <Grid
+                    item
+                    xs={5}
+                    style={{ display: 'flex', justifyContent: 'flex-start' }}
+                  >
                     <TimeComponent />
                   </Grid>
                 </Grid>
@@ -188,7 +210,8 @@ const PhaseComponent = () => {
               <span
                 className='h5'
                 style={{
-                  marginLeft: '15px'
+                  marginLeft: '15px',
+                  color: 'rgba(74, 72, 72, .8)'
                 }}
               >
                 Task 2:{' '}
@@ -200,16 +223,25 @@ const PhaseComponent = () => {
               <Container
                 fluid
                 style={{
-                  padding: '20px 250px 15px 250px',
+                  padding: '20px 50px 15px 50px',
+
                   margin: '10px 0px 10px 0px',
                   borderBottom: '1px solid #c7c7c7'
                 }}
               >
                 <Grid fluid container spacing='1' style={{ gap: 6 }}>
-                  <Grid item xs={5}>
+                  <Grid
+                    item
+                    xs={5}
+                    style={{ display: 'flex', justifyContent: 'flex-end' }}
+                  >
                     <DateComponent name='Date' />
                   </Grid>
-                  <Grid item xs={5}>
+                  <Grid
+                    item
+                    xs={5}
+                    style={{ display: 'flex', justifyContent: 'flex-start' }}
+                  >
                     <TimeComponent />
                   </Grid>
                 </Grid>
@@ -220,38 +252,56 @@ const PhaseComponent = () => {
               <span
                 className='h5'
                 style={{
-                  marginLeft: '15px'
+                  marginLeft: '15px',
+                  color: 'rgba(74, 72, 72, .8)'
+                  // color: '#fff'
                 }}
               >
                 Task 3:{' '}
               </span>
 
               <span style={{ color: '#17A5CE', marginLeft: '15px' }}>
-                Selecttion confirmatin by aplicant
+                Selection confirmation by applicant
               </span>
               <Container
                 fluid
                 style={{
-                  padding: '20px 250px 15px 250px',
+                  padding: '20px 50px 15px 50px',
                   margin: '10px 0px 10px 0px'
                   // borderBottom: '1px solid #c7c7c7'
                 }}
               >
                 <Grid fluid container spacing='1' style={{ gap: 6 }}>
-                  <Grid item xs={5}>
+                  <Grid
+                    item
+                    xs={5}
+                    style={{ display: 'flex', justifyContent: 'flex-end' }}
+                  >
                     <DateComponent name='Start Date' />
                   </Grid>
-                  <Grid item xs={5}>
+                  <Grid
+                    item
+                    xs={5}
+                    style={{ display: 'flex', justifyContent: 'flex-start' }}
+                  >
                     <TimeComponent />
                   </Grid>
                   <Grid item xs='10' style={{ textAlign: 'center' }}>
                     To
                   </Grid>
 
-                  <Grid item xs={5}>
+                  <Grid
+                    item
+                    xs={5}
+                    style={{ display: 'flex', justifyContent: 'flex-end' }}
+                  >
                     <DateComponent name='End Date' />
                   </Grid>
-                  <Grid item xs={5}>
+                  <Grid
+                    item
+                    xs={5}
+                    style={{ display: 'flex', justifyContent: 'flex-start' }}
+                  >
                     <TimeComponent />
                   </Grid>
                 </Grid>
@@ -269,7 +319,7 @@ const PhaseComponent = () => {
           color: '#17A5CE',
 
           marginTop: '20px',
-          marginLeft: '15px',
+          marginLeft: '-10px',
           border: '1.5px solid #17A5CE',
           letterSpacing: '.75px',
           fontWeight: '700'
