@@ -45,6 +45,7 @@ import Quota from '../Component/Quota'
 import PhaseComponent from '../Component/PhaseComponent'
 import Breadcrumbs from '@mui/material/Breadcrumbs'
 import Link from '@mui/material/Link'
+import ResultDataSyncronization from '../Component/ResultDataSyncronization'
 
 const steps = [
   {
@@ -126,7 +127,7 @@ const useStyles = makeStyles({
   }
 })
 export default function VerticalLinearStepper () {
-  const [activeStep, setActiveStep] = React.useState(0)
+  const [activeStep, setActiveStep] = React.useState(3)
   const buttonClasses = useStyles()
 
   const handleNext = () => {
@@ -234,7 +235,21 @@ export default function VerticalLinearStepper () {
                     </Container>
                   )}
 
-                  {/* {index === 2 && <PhaseComponent />} */}
+                  {index === 3 && (
+                    <Container
+                      maxWidth='100%'
+                      style={{
+                        marginTop: '20px'
+                        // marginLeft: '-10px'
+                        // marginRight: "-10px",
+                        // paddingRight: "-50px",
+                        // backgroundColor: "black",
+                        // color: "red",
+                      }}
+                    >
+                      <ResultDataSyncronization />
+                    </Container>
+                  )}
 
                   <Container
                     maxWidth='100%'
