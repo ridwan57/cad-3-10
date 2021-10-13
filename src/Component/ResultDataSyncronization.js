@@ -36,7 +36,51 @@ const boards = [
     name: 'Dinajpur'
   }
 ]
+const useStyles = makeStyles({
+  textField: {
+    '& label.Mui-focused': {
+      color: '#17A5CE',
+      padding: '2px 10px 0px 10px',
+      letterSpacing: '.75px',
+
+      // backgroundColor: 'red',
+      // position: 'relative',
+      // width: '80px',
+      fontSize: '20px',
+      top: '-9px',
+
+      // color: "red",
+      backgroundColor: 'white'
+    },
+    '& .MuiOutlinedInput': {},
+    '& .MuiInputBase-input': {
+      // padding: '4px 17px',
+      marginTop: '-10px'
+
+      // maxWidth: '300px',
+      // backgroundColor: 'blue'
+    },
+    '& .MuiOutlinedInput-root': {
+      // color: "#17A5CE",
+      // - The Input-root, inside the TextField-root
+      '& fieldset': {
+        // - The <fieldset> inside the Input-root
+        // borderColor: "pink", // - Set the Input border
+      },
+      '&:hover fieldset': {
+        // borderColor: "yellow", // - Set the Input border when parent has :hover
+      },
+      '&.Mui-focused fieldset': {
+        // - Set the Input border when parent is focused
+        // borderColor: "green",
+        border: '2px solid rgba(199, 199, 199, .7)'
+      }
+    }
+  }
+})
+
 const ResultDataSyncronization = () => {
+  const classes = useStyles()
   return (
     <Table
       borderless
@@ -114,7 +158,44 @@ const ResultDataSyncronization = () => {
         >
           <td style={{ paddingRight: '50px' }}>{board.id}</td>
           <td style={{ textAlign: 'left' }}>{board.name}</td>
-          <td style={{ textAlign: 'right', paddingRight: '80px' }}>Dropdown</td>
+          <td style={{ textAlign: 'right', paddingRight: '90px' }}>
+            <div>
+              <FormControl fullWidth variant='standard'>
+                <TextField
+                  select
+                  label='Quota Type'
+                  className={classes.textField}
+                  fullWidth
+                  focused
+                  defaultValue='default'
+                  // sx={{ width: '100%' }}
+                  SelectProps={{
+                    variant: 'filled',
+                    color: 'primary'
+                    // multiple: true,
+                    // value: []
+                    // label: 'gfgg'
+                    // displayEmpty: 'true'
+                  }}
+                >
+                  <MenuItem
+                    // className={clsx(
+                    //   classes.menuitem,
+                    //   !showPlaceholder ? classes.menuitemhidden : null
+                    // )}
+                    key='0'
+                    disabled
+                    defaultChecked
+                    value='default'
+                  >
+                    Select from dropdown...
+                  </MenuItem>
+                  <MenuItem value={'general'}>General</MenuItem>
+                  <MenuItem value={'special'}>Special</MenuItem>
+                </TextField>
+              </FormControl>
+            </div>
+          </td>
         </tr>
       ))}
     </Table>

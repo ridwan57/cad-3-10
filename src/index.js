@@ -39,6 +39,15 @@ import MobileDatePicker from '@mui/lab/MobileDatePicker'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 const theme = createTheme({
+  overrides: {
+    MuiSelect: {
+      select: {
+        '&:focus': {
+          background: '$labelcolor'
+        }
+      }
+    }
+  },
   typography: {
     fontFamily: ['open-sans'].join(',')
   }
