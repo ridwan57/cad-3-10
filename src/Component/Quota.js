@@ -322,12 +322,7 @@ const Quota = () => {
             marginBottom: '10px'
           }}
         >
-          <tr
-            className='mb-100'
-            data-toggle='collapse'
-            data-target='#demo1'
-            class='accordion-toggle'
-          >
+          <tr className='mb-100'>
             <th className='border-0 '>ID</th>
             <th className='border-0 '>Quota Name</th>
             <th className='border-0'>Percentage</th>
