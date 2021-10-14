@@ -166,7 +166,7 @@ export default function VerticalLinearStepper () {
         </Link> */}
       </Breadcrumbs>
 
-      <Paper style={{ margin: '20px' }} elevation='4'>
+      <Paper style={{ margin: '20px' }} elevation={4}>
         <h3 style={{ letterSpacing: '10', padding: '20px 0px 0px 20px' }}>
           Settings
         </h3>

@@ -57,7 +57,6 @@ const useStyles = makeStyles({
     '& .MuiInputBase-input': {
       // padding: '4px 17px',
       // marginTop: '-10px'
-
       // maxWidth: '200px'
       // backgroundColor: 'blue'
     },
@@ -147,63 +146,65 @@ const ResultDataSyncronization = () => {
           </th>
         </tr>
       </thead>
-      {boards.map((board, i) => (
-        <tr
-          style={{
-            backgroundColor: `${i % 2 === 0 ? '#EAFAFF' : '#fff'}`,
-            height: '60px',
-            //   width: 'auto',
-            borderBottom: '1px solid #C7c7c7'
-          }}
-          W
-        >
-          <td style={{ paddingRight: '50px' }}>{board.id}</td>
-          <td style={{ textAlign: 'left' }}>{board.name}</td>
-          <td style={{ textAlign: 'right' }}>
-            <div>
-              <FormControl fullWidth variant='standard'>
-                <TextField
-                  select
-                  label='Quota Type'
-                  className={classes.textField}
-                  fullWidth
-                  focused
-                  defaultValue='default'
-                  sx={{
-                    width: '60%',
-                    alignItems: 'end',
-                    // backgroundColor: 'red',
-                    marginLeft: 'auto'
-                  }}
-                  SelectProps={{
-                    variant: 'filled',
-                    color: 'primary'
-                    // multiple: true,
-                    // value: []
-                    // label: 'gfgg'
-                    // displayEmpty: 'true'
-                  }}
-                >
-                  <MenuItem
-                    // className={clsx(
-                    //   classes.menuitem,
-                    //   !showPlaceholder ? classes.menuitemhidden : null
-                    // )}
-                    key='0'
-                    disabled
-                    defaultChecked
-                    value='default'
+      <tbody style={{ verticalAlign: 'middle' }}>
+        {boards.map((board, i) => (
+          <tr
+            key={board.id}
+            style={{
+              backgroundColor: `${i % 2 === 0 ? '#EAFAFF' : '#fff'}`,
+              height: '60px',
+              //   width: 'auto',
+              borderBottom: '1px solid #C7c7c7'
+            }}
+          >
+            <td style={{ paddingRight: '50px' }}>{board.id}</td>
+            <td style={{ textAlign: 'left' }}>{board.name}</td>
+            <td style={{ textAlign: 'right' }}>
+              <div>
+                <FormControl fullWidth variant='standard'>
+                  <TextField
+                    select
+                    label='Quota Type'
+                    className={classes.textField}
+                    fullWidth
+                    focused
+                    defaultValue='default'
+                    sx={{
+                      width: '60%',
+                      alignItems: 'end',
+                      // backgroundColor: 'red',
+                      marginLeft: 'auto'
+                    }}
+                    SelectProps={{
+                      variant: 'filled',
+                      color: 'primary'
+                      // multiple: true,
+                      // value: []
+                      // label: 'gfgg'
+                      // displayEmpty: 'true'
+                    }}
                   >
-                    Select from dropdown...
-                  </MenuItem>
-                  <MenuItem value={'general'}>Import From RP Module</MenuItem>
-                  <MenuItem value={'special'}>Upload File</MenuItem>
-                </TextField>
-              </FormControl>
-            </div>
-          </td>
-        </tr>
-      ))}
+                    <MenuItem
+                      // className={clsx(
+                      //   classes.menuitem,
+                      //   !showPlaceholder ? classes.menuitemhidden : null
+                      // )}
+                      key='0'
+                      disabled
+                      defaultChecked
+                      value='default'
+                    >
+                      Select from dropdown...
+                    </MenuItem>
+                    <MenuItem value={'general'}>Import From RP Module</MenuItem>
+                    <MenuItem value={'special'}>Upload File</MenuItem>
+                  </TextField>
+                </FormControl>
+              </div>
+            </td>
+          </tr>
+        ))}
+      </tbody>
     </Table>
   )
 }

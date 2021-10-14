@@ -57,6 +57,7 @@ const useStyles = makeStyles({
 })
 
 const DateComponent = ({ name }) => {
+  const handleChange = e => {}
   const classes = useStyles()
   return (
     <DesktopDatePicker
@@ -64,7 +65,7 @@ const DateComponent = ({ name }) => {
       inputFormat='MM/dd/yyyy'
       placeholder='Time'
       // value={value}
-      // onChange={handleChange}
+      onChange={handleChange}
       // className={classes.keyboardPicker}
       focused
       renderInput={params => (
@@ -81,13 +82,14 @@ const DateComponent = ({ name }) => {
 }
 const TimeComponent = () => {
   const classes = useStyles()
+  const handleChange = e => {}
 
   return (
     <TimePicker
       label='Time'
       // value={value}
       placeholder='Time'
-      // onChange={handleChange}
+      onChange={handleChange}
       focused
       // className={classes.keyboardPicker}
       renderInput={params => (

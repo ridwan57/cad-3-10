@@ -144,6 +144,10 @@ const Quota = () => {
   const classes = useStyles()
   const [id, setId] = React.useState(0)
   const [openDialog, setOpenDialog] = useState(false)
+
+  const handleClickItem = e => {
+    console.log('e', e.target)
+  }
   const handleChange = id => {
     setId(id)
   }
@@ -215,6 +219,7 @@ const Quota = () => {
                       //   classes.menuitem,
                       //   !showPlaceholder ? classes.menuitemhidden : null
                       // )}
+                      onClick={handleClickItem}
                       key='0'
                       disabled
                       defaultChecked
@@ -222,8 +227,12 @@ const Quota = () => {
                     >
                       Select from dropdown...
                     </MenuItem>
-                    <MenuItem value={'general'}>General</MenuItem>
-                    <MenuItem value={'special'}>Special</MenuItem>
+                    <MenuItem value={'general'} onClick={handleClickItem}>
+                      General
+                    </MenuItem>
+                    <MenuItem value={'special'} onClick={handleClickItem}>
+                      Special
+                    </MenuItem>
                   </TextField>
                 </FormControl>
 
@@ -271,7 +280,7 @@ const Quota = () => {
               <Grid item xs={3}>
                 <Button
                   variant='contained'
-                  color='success'
+                  // color='success'
                   // sx={{ color: '#17A5CE' }}
                   // color='primary'
                   style={{
@@ -330,7 +339,7 @@ const Quota = () => {
           </tr>
         </thead>
         {quotas.map((eachQuota, i) => (
-          <>
+          <tbody style={{ verticalAlign: 'middle' }}>
             <tr
               style={{
                 backgroundColor: `${
@@ -444,7 +453,9 @@ const Quota = () => {
                       } else setId(eachQuota.id)
                     }}
                     sx={{
-                      backgroundColor: 'rgba(106,106,106,0.15)',
+                      // backgroundColor: 'rgba(106,106,106,0.15)',
+                      backgroundColor: `${i % 2 === 0 ? '#EAFAFF' : '#fff'}`,
+                      boxShadow: 'none',
                       zIndex: 1
                     }}
                     size='small'
@@ -461,7 +472,10 @@ const Quota = () => {
                       } else setId(eachQuota.id)
                     }}
                     sx={{
-                      backgroundColor: 'rgba(106,106,106,0.15)',
+                      // backgroundColor: 'rgba(106,106,106,0.15)',
+                      // backgroundColor: `${i % 2 === 0 ? '#EAFAFF' : '#fff'}`,
+                      // backgroundColor: 'red',
+                      boxShadow: 'none',
                       zIndex: 1
                     }}
                     size='small'
@@ -490,7 +504,6 @@ const Quota = () => {
                   <Collapse
                     // collapsedSize='large'
                     in={eachQuota.id === id}
-                    xs={{}}
                     className={classes.collapseStyle}
                   >
                     <TextField
@@ -507,7 +520,7 @@ const Quota = () => {
                 </div>
               </td>
             </tr>
-          </>
+          </tbody>
         ))}
       </Table>
       <Button

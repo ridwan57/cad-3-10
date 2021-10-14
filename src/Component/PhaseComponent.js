@@ -86,6 +86,7 @@ const PhaseComponent = () => {
     <>
       {phases.map((phase, i) => (
         <Container
+          key={phase.title}
           style={{
             border: '1px solid #c7c7c7',
             borderRadius: '7px',
@@ -155,7 +156,6 @@ const PhaseComponent = () => {
           <Collapse
             // collapsedSize='large'
             in={i === id}
-            xs={{}}
             className={classes.collapseStyle}
           >
             {/* {tasks.map((task, j) => ( */}
@@ -175,14 +175,14 @@ const PhaseComponent = () => {
                 Accepting Applications
               </span>
               <Container
-                fluid
+                fluid='true'
                 style={{
                   padding: '20px 50px 15px 50px',
                   margin: '10px 0px 10px 0px',
                   borderBottom: '1px solid #c7c7c7'
                 }}
               >
-                <Grid fluid container spacing='1' style={{ gap: 6 }}>
+                <Grid fluid='true' container spacing={1} style={{ gap: 6 }}>
                   <Grid
                     item
                     xs={5}
@@ -197,7 +197,7 @@ const PhaseComponent = () => {
                   >
                     <TimeComponent />
                   </Grid>
-                  <Grid item xs='10' style={{ textAlign: 'center' }}>
+                  <Grid item xs={10} style={{ textAlign: 'center' }}>
                     To
                   </Grid>
 
@@ -234,7 +234,7 @@ const PhaseComponent = () => {
                 Migration result publishing
               </span>
               <Container
-                fluid
+                fluid='true'
                 style={{
                   padding: '20px 50px 15px 50px',
 
@@ -242,7 +242,7 @@ const PhaseComponent = () => {
                   borderBottom: '1px solid #c7c7c7'
                 }}
               >
-                <Grid fluid container spacing='1' style={{ gap: 6 }}>
+                <Grid fluid='true' container spacing={1} style={{ gap: 6 }}>
                   <Grid
                     item
                     xs={5}
@@ -277,14 +277,14 @@ const PhaseComponent = () => {
                 Selection confirmation by applicant
               </span>
               <Container
-                fluid
+                fluid='true'
                 style={{
                   padding: '20px 50px 15px 50px',
                   margin: '10px 0px 10px 0px'
                   // borderBottom: '1px solid #c7c7c7'
                 }}
               >
-                <Grid fluid container spacing='1' style={{ gap: 6 }}>
+                <Grid fluid='true' container spacing={1} style={{ gap: 6 }}>
                   <Grid
                     item
                     xs={5}
@@ -299,7 +299,7 @@ const PhaseComponent = () => {
                   >
                     <TimeComponent />
                   </Grid>
-                  <Grid item xs='10' style={{ textAlign: 'center' }}>
+                  <Grid item xs={10} style={{ textAlign: 'center' }}>
                     To
                   </Grid>
 
