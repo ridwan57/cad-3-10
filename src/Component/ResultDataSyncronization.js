@@ -42,22 +42,23 @@ const useStyles = makeStyles({
       color: '#17A5CE',
       padding: '2px 10px 0px 10px',
       letterSpacing: '.75px',
+      visibility: 'hidden',
 
       // backgroundColor: 'red',
       // position: 'relative',
-      // width: '80px',
+      // width: '50%',
       fontSize: '20px',
-      top: '-9px',
+      top: '-9px'
 
       // color: "red",
-      backgroundColor: 'white'
+      // backgroundColor: 'white'
     },
     '& .MuiOutlinedInput': {},
     '& .MuiInputBase-input': {
       // padding: '4px 17px',
-      marginTop: '-10px'
+      // marginTop: '-10px'
 
-      // maxWidth: '300px',
+      // maxWidth: '200px'
       // backgroundColor: 'blue'
     },
     '& .MuiOutlinedInput-root': {
@@ -158,7 +159,7 @@ const ResultDataSyncronization = () => {
         >
           <td style={{ paddingRight: '50px' }}>{board.id}</td>
           <td style={{ textAlign: 'left' }}>{board.name}</td>
-          <td style={{ textAlign: 'right', paddingRight: '90px' }}>
+          <td style={{ textAlign: 'right' }}>
             <div>
               <FormControl fullWidth variant='standard'>
                 <TextField
@@ -168,7 +169,12 @@ const ResultDataSyncronization = () => {
                   fullWidth
                   focused
                   defaultValue='default'
-                  // sx={{ width: '100%' }}
+                  sx={{
+                    width: '60%',
+                    alignItems: 'end',
+                    // backgroundColor: 'red',
+                    marginLeft: 'auto'
+                  }}
                   SelectProps={{
                     variant: 'filled',
                     color: 'primary'
@@ -190,8 +196,8 @@ const ResultDataSyncronization = () => {
                   >
                     Select from dropdown...
                   </MenuItem>
-                  <MenuItem value={'general'}>General</MenuItem>
-                  <MenuItem value={'special'}>Special</MenuItem>
+                  <MenuItem value={'general'}>Import From RP Module</MenuItem>
+                  <MenuItem value={'special'}>Upload File</MenuItem>
                 </TextField>
               </FormControl>
             </div>
