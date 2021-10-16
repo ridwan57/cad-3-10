@@ -10,6 +10,7 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns'
 import LocalizationProvider from '@mui/lab/LocalizationProvider'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
+import NestedProp from './Component/NestedProp'
 
 const theme = createTheme({
   overrides: {
@@ -29,11 +30,14 @@ ReactDOM.render(
   <React.StrictMode>
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <ThemeProvider theme={theme}>
-        <div style={{ marginLeft: '150px' }}>
+        <div
+        // style={{ marginLeft: '150px' }}
+        >
           <Stepper />
         </div>
       </ThemeProvider>
     </LocalizationProvider>
+    {/* <NestedProp /> */}
   </React.StrictMode>,
   document.getElementById('root')
 )

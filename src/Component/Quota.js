@@ -98,55 +98,81 @@ const useStyles = makeStyles({
   }
 })
 
-const quotas = [
+const initialQuotas = [
   {
     id: 1,
     name: 'Freedom Fighter Quota',
     percentage: 20,
     unSeats: 12,
-    description:
+    desc:
       'Lorem ipsum dolor sit amet, populo delicatissimi  interpretaris ea cum. Mutat pertinax assentior ea   eam, ea atqui consul ius. Eum prima debitis ei. Eu est libris regione gubergren, democritum reprimique pri id. Cu qui regione patrioque.',
-    q: ['G']
+    q: ['general']
   },
   {
     id: 2,
     name: 'Own Quota',
     percentage: 20,
     unSeats: 12,
-    description:
+    desc:
       'Lorem ipsum dolor sit amet, populo delicatissimi  interpretaris ea cum. Mutat pertinax assentior ea   eam, ea atqui consul ius. Eum prima debitis ei. Eu est libris regione gubergren, democritum reprimique pri id. Cu qui regione patrioque.',
 
-    q: ['G']
+    q: ['general']
   },
   {
     id: 3,
     name: 'Special Quota',
     percentage: 5,
     unSeats: 12,
-    description:
+    desc:
       'Lorem ipsum dolor sit amet, populo delicatissimi  interpretaris ea cum. Mutat pertinax assentior ea   eam, ea atqui consul ius. Eum prima debitis ei. Eu est libris regione gubergren, democritum reprimique pri id. Cu qui regione patrioque.',
 
-    q: ['S']
+    q: ['special']
   },
   {
     id: 4,
     name: 'General Quota',
     percentage: 20,
     unSeats: 12,
-    description:
+    desc:
       'Lorem ipsum dolor sit amet, populo delicatissimi  interpretaris ea cum. Mutat pertinax assentior ea   eam, ea atqui consul ius. Eum prima debitis ei. Eu est libris regione gubergren, democritum reprimique pri id. Cu qui regione patrioque.',
 
-    q: ['G']
+    q: ['general']
   }
 ]
-
+const resetNewQuota = {
+  name: '',
+  type: '',
+  desc: ''
+}
 const Quota = () => {
   const classes = useStyles()
   const [id, setId] = React.useState(0)
   const [openDialog, setOpenDialog] = useState(false)
+  const [quotas, setQuotas] = useState(initialQuotas)
+  const [newQuota, setNewQuota] = useState(resetNewQuota)
+  const saveQuota = () => {
+    console.log('saveQuota', saveQuota)
+    setQuotas(prev => [
+      ...prev,
+      {
+        id: prev.length + 1,
+        name: newQuota.name,
+        q: [newQuota.type],
+        desc: newQuota.desc,
+        percentage: 20,
+        unSeats: 12
+      }
+    ])
+    setNewQuota(resetNewQuota)
+  }
 
-  const handleClickItem = e => {
-    console.log('e', e.target)
+  const handleNewQuota = e => {
+    const { name, value, checked } = e.target
+    console.log('e.target', e.target)
+    setNewQuota(prev => ({
+      ...prev,
+      [name]: name === 'undefined' ? checked : value
+    }))
   }
   const handleChange = id => {
     setId(id)
@@ -188,7 +214,10 @@ const Quota = () => {
                   fullWidth
                   focused
                   label='Quota Name'
+                  name='name'
                   placeholder='Enter your text here..'
+                  onChange={handleNewQuota}
+                  value={newQuota.name}
                 />
               </Grid>
               <Grid
@@ -204,6 +233,8 @@ const Quota = () => {
                     fullWidth
                     focused
                     defaultValue='default'
+                    onChange={handleNewQuota}
+                    name='type'
                     // sx={{ width: '100%' }}
                     SelectProps={{
                       variant: 'filled',
@@ -219,7 +250,7 @@ const Quota = () => {
                       //   classes.menuitem,
                       //   !showPlaceholder ? classes.menuitemhidden : null
                       // )}
-                      onClick={handleClickItem}
+                      // onClick={handleClickItem}
                       key='0'
                       disabled
                       defaultChecked
@@ -227,12 +258,8 @@ const Quota = () => {
                     >
                       Select from dropdown...
                     </MenuItem>
-                    <MenuItem value={'general'} onClick={handleClickItem}>
-                      General
-                    </MenuItem>
-                    <MenuItem value={'special'} onClick={handleClickItem}>
-                      Special
-                    </MenuItem>
+                    <MenuItem value={'general'}>General</MenuItem>
+                    <MenuItem value={'special'}>Special</MenuItem>
                   </TextField>
                 </FormControl>
 
@@ -255,6 +282,9 @@ const Quota = () => {
                   focused
                   placeholder='Enter your text here...'
                   label='Description'
+                  name='desc'
+                  onChange={handleNewQuota}
+                  value={newQuota.desc}
                   // value=''
                 />
               </Grid>
@@ -272,7 +302,10 @@ const Quota = () => {
                     borderRadius: '7px',
                     border: '1px solid red'
                   }}
-                  onClick={() => setOpenDialog(false)}
+                  onClick={() => {
+                    setOpenDialog(false)
+                    setNewQuota(resetNewQuota)
+                  }}
                 >
                   Cancel
                 </Button>
@@ -282,6 +315,10 @@ const Quota = () => {
                   variant='contained'
                   // color='success'
                   // sx={{ color: '#17A5CE' }}
+                  onClick={() => {
+                    saveQuota()
+                    setOpenDialog(false)
+                  }}
                   // color='primary'
                   style={{
                     backgroundColor: '#17A5CE',
@@ -290,7 +327,6 @@ const Quota = () => {
                     width: '90%',
                     borderRadius: '7px'
                   }}
-                  onClick={() => setOpenDialog(false)}
                 >
                   Save
                 </Button>
@@ -388,17 +424,17 @@ const Quota = () => {
               <td>
                 <Checkbox
                   style={{
-                    color: eachQuota.q.includes('G') ? '#17A5CE' : null
+                    color: eachQuota.q.includes('general') ? '#17A5CE' : null
                   }}
-                  checked={eachQuota.q.includes('G')}
+                  checked={eachQuota.q.includes('general')}
                 ></Checkbox>
               </td>
               <td>
                 <Checkbox
                   style={{
-                    color: eachQuota.q.includes('S') ? '#17A5CE' : null
+                    color: eachQuota.q.includes('special') ? '#17A5CE' : null
                   }}
-                  checked={eachQuota.q.includes('S')}
+                  checked={eachQuota.q.includes('special')}
                   onClick={e => {
                     console.log(e.target.checked)
                   }}
@@ -509,7 +545,7 @@ const Quota = () => {
                       fullWidth
                       focused
                       label='Description'
-                      value={eachQuota.description}
+                      value={eachQuota.desc}
                     />
                   </Collapse>
                 </div>

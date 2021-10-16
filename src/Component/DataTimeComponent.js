@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import DateFnsUtils from '@date-io/date-fns'
 import {
   MuiPickersUtilsProvider,
@@ -57,14 +57,18 @@ const useStyles = makeStyles({
 })
 
 const DateComponent = ({ name }) => {
-  const handleChange = e => {}
+  const [value, setValue] = useState(new Date())
+  const handleChange = e => {
+    console.log('e', e)
+    setValue(e)
+  }
   const classes = useStyles()
   return (
     <DesktopDatePicker
       label={name}
       inputFormat='MM/dd/yyyy'
       placeholder='Time'
-      // value={value}
+      value={value}
       onChange={handleChange}
       // className={classes.keyboardPicker}
       focused
@@ -82,12 +86,16 @@ const DateComponent = ({ name }) => {
 }
 const TimeComponent = () => {
   const classes = useStyles()
-  const handleChange = e => {}
+  const [value, setValue] = useState(new Date())
+  const handleChange = e => {
+    console.log('e', e)
+    setValue(e)
+  }
 
   return (
     <TimePicker
       label='Time'
-      // value={value}
+      value={value}
       placeholder='Time'
       onChange={handleChange}
       focused

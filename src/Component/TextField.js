@@ -44,7 +44,7 @@ function ColorTextFields (props) {
     }
   })
 
-  console.log('props:', props)
+  // console.log('props:', props)
   const {
     placeHolderName = '',
     titleName = 'Default',

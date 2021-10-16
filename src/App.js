@@ -3,7 +3,7 @@ import { useTheme } from "@mui/styles";
 
 function App() {
   const theme = useTheme();
-  console.log("theme:", theme);
+  // console.log("theme:", theme);
   return (
     <div className="App">
       {/* <AppBar /> */}
