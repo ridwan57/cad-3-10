@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Grid from '@material-ui/core/Grid'
 import { Table } from 'react-bootstrap'
 import clsx from 'clsx'
+import useMediaQuery from '@mui/material/useMediaQuery'
 
 import {
   Checkbox,
@@ -145,6 +146,9 @@ const resetNewQuota = {
   desc: ''
 }
 const Quota = () => {
+  const smMatches = useMediaQuery(theme => theme.breakpoints.up('sm'))
+  console.log('smMatches', smMatches)
+
   const classes = useStyles()
   const [id, setId] = React.useState(0)
   const [openDialog, setOpenDialog] = useState(false)
@@ -343,11 +347,11 @@ const Quota = () => {
         responsive
         // bordered
 
-        className='table-centered rounded mb-0 overflow-hidden text-center'
+        className='table-centered rounded mb-0 overflow-scroll text-center'
         style={{
           borderSpacing: 0,
           borderCollapse: 'collapse',
-          border: '0px solid #fff'
+          border: '0px solid #fff',
         }}
       >
         <thead
@@ -381,7 +385,7 @@ const Quota = () => {
                     : '#fff'
                 }`,
                 height: '60px',
-                borderBottom: '1px solid #C7c7c7'
+                borderBottom: '.1px solid #C7c7c7'
               }}
               // className='border-2'
             >

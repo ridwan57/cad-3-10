@@ -15,6 +15,8 @@ import { Collapse, Dialog, DialogTitle } from '@mui/material'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 
+import produce from 'immer'
+
 const useStyles = makeStyles({
   // disabled: {
   //   '& .MuiButtonBase-root.Mui-disabled': {
@@ -68,7 +70,22 @@ const useStyles = makeStyles({
 })
 
 // .MuiOutlinedInput-input
+
+const defaultPhase = {
+  accepting: {
+    startDate: new Date(),
+    endDate: new Date()
+  },
+  migration: {
+    date: new Date()
+  },
+  confirmation: {
+    startDate: new Date(),
+    endDate: new Date()
+  }
+}
 const PhaseComponent = () => {
+  const [phasesState, setPhasesState] = useState([])
   const tasks = [
     { title: 'Accepting Applications' },
     { title: 'Migration result publishing' },
@@ -82,11 +99,26 @@ const PhaseComponent = () => {
     setId(id)
   }
 
+  const handleChangeDateTime = (i, key1, key2, val) => {
+    setPhasesState(
+      produce(draft => {
+        draft[i][key1][key2] = val
+      })
+    )
+  }
+  const addPhase = () => {
+    setPhasesState(
+      produce(draft => {
+        draft.push(defaultPhase)
+      })
+    )
+  }
+
   return (
     <>
-      {phases.map((phase, i) => (
+      {phasesState.map((phase, i) => (
         <Container
-          key={phase.title}
+          // key={phase.title}
           style={{
             border: '1px solid #c7c7c7',
             borderRadius: '7px',
@@ -185,35 +217,66 @@ const PhaseComponent = () => {
                 <Grid fluid='true' container spacing={1} style={{ gap: 6 }}>
                   <Grid
                     item
-                    xs={5}
+                    sm={7}
+                    xs={12}
                     style={{ display: 'flex', justifyContent: 'flex-end' }}
                   >
-                    <DateComponent name='Start Date' />
+                    <DateComponent
+                      name='Start Date'
+                      value={phase.accepting.startDate}
+                      handleChange={val =>
+                        handleChangeDateTime(i, 'accepting', 'startDate', val)
+                      }
+                    />
                   </Grid>
                   <Grid
                     item
-                    xs={5}
+                    sm={4}
+                    xs={12}
                     style={{ display: 'flex', justifyContent: 'flex-start' }}
                   >
-                    <TimeComponent />
+                    <TimeComponent
+                      value={phase.accepting.startDate}
+                      handleChange={val =>
+                        handleChangeDateTime(i, 'accepting', 'startDate', val)
+                      }
+                    />
                   </Grid>
-                  <Grid item xs={10} style={{ textAlign: 'center' }}>
+                  <Grid
+                    item
+                    sm={7}
+                    xs={5}
+                    style={{ textAlign: 'right', marginLeft: '15px' }}
+                  >
                     To
                   </Grid>
 
                   <Grid
                     item
-                    xs={5}
+                    sm={7}
+                    xs={12}
                     style={{ display: 'flex', justifyContent: 'flex-end' }}
                   >
-                    <DateComponent name='End Date' />
+                    <DateComponent
+                      name='End Date'
+                      value={phase.accepting.endDate}
+                      handleChange={val =>
+                        handleChangeDateTime(i, 'accepting', 'endDate', val)
+                      }
+                    />
                   </Grid>
                   <Grid
                     item
-                    xs={5}
+                    sm={4}
+                    xs={12}
                     style={{ display: 'flex', justifyContent: 'flex-start' }}
                   >
-                    <TimeComponent />
+                    <TimeComponent
+                      value={phase.accepting.endDate}
+                      handleChange={val =>
+                        handleChangeDateTime(i, 'accepting', 'endDate', val)
+                      }
+                    />
                   </Grid>
                 </Grid>
               </Container>
@@ -245,17 +308,30 @@ const PhaseComponent = () => {
                 <Grid fluid='true' container spacing={1} style={{ gap: 6 }}>
                   <Grid
                     item
-                    xs={5}
+                    sm={7}
+                    xs={12}
                     style={{ display: 'flex', justifyContent: 'flex-end' }}
                   >
-                    <DateComponent name='Date' />
+                    <DateComponent
+                      name='Date'
+                      value={phase.migration.date}
+                      handleChange={val =>
+                        handleChangeDateTime(i, 'migration', 'date', val)
+                      }
+                    />
                   </Grid>
                   <Grid
                     item
-                    xs={5}
+                    sm={4}
+                    xs={12}
                     style={{ display: 'flex', justifyContent: 'flex-start' }}
                   >
-                    <TimeComponent />
+                    <TimeComponent
+                      value={phase.migration.date}
+                      handleChange={val =>
+                        handleChangeDateTime(i, 'migration', 'date', val)
+                      }
+                    />
                   </Grid>
                 </Grid>
               </Container>
@@ -287,35 +363,76 @@ const PhaseComponent = () => {
                 <Grid fluid='true' container spacing={1} style={{ gap: 6 }}>
                   <Grid
                     item
-                    xs={5}
+                    sm={7}
+                    xs={12}
                     style={{ display: 'flex', justifyContent: 'flex-end' }}
                   >
-                    <DateComponent name='Start Date' />
+                    <DateComponent
+                      name='Start Date'
+                      value={phase.confirmation.startDate}
+                      handleChange={val =>
+                        handleChangeDateTime(
+                          i,
+                          'confirmation',
+                          'startDate',
+                          val
+                        )
+                      }
+                    />
                   </Grid>
                   <Grid
                     item
-                    xs={5}
+                    sm={4}
+                    xs={12}
                     style={{ display: 'flex', justifyContent: 'flex-start' }}
                   >
-                    <TimeComponent />
+                    <TimeComponent
+                      value={phase.confirmation.startDate}
+                      handleChange={val =>
+                        handleChangeDateTime(
+                          i,
+                          'confirmation',
+                          'startDate',
+                          val
+                        )
+                      }
+                    />
                   </Grid>
-                  <Grid item xs={10} style={{ textAlign: 'center' }}>
+                  <Grid
+                    item
+                    sm={7}
+                    xs={5}
+                    style={{ textAlign: 'right', marginLeft: '15px' }}
+                  >
                     To
                   </Grid>
 
                   <Grid
                     item
-                    xs={5}
+                    sm={7}
+                    xs={12}
                     style={{ display: 'flex', justifyContent: 'flex-end' }}
                   >
-                    <DateComponent name='End Date' />
+                    <DateComponent
+                      name='End Date'
+                      value={phase.confirmation.endDate}
+                      handleChange={val =>
+                        handleChangeDateTime(i, 'confirmation', 'endDate', val)
+                      }
+                    />
                   </Grid>
                   <Grid
                     item
-                    xs={5}
+                    sm={4}
+                    xs={12}
                     style={{ display: 'flex', justifyContent: 'flex-start' }}
                   >
-                    <TimeComponent />
+                    <TimeComponent
+                      value={phase.confirmation.endDate}
+                      handleChange={val =>
+                        handleChangeDateTime(i, 'confirmation', 'endDate', val)
+                      }
+                    />
                   </Grid>
                 </Grid>
               </Container>
@@ -339,6 +456,9 @@ const PhaseComponent = () => {
         }}
         variant='outlined'
         // onClick={() => setOpenDialog(true)}
+        onClick={() => {
+          addPhase()
+        }}
       >
         Add another Phase
       </Button>

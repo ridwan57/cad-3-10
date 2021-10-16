@@ -56,12 +56,7 @@ const useStyles = makeStyles({
   }
 })
 
-const DateComponent = ({ name }) => {
-  const [value, setValue] = useState(new Date())
-  const handleChange = e => {
-    console.log('e', e)
-    setValue(e)
-  }
+const DateComponent = ({ name, handleChange, value }) => {
   const classes = useStyles()
   return (
     <DesktopDatePicker
@@ -84,13 +79,8 @@ const DateComponent = ({ name }) => {
     />
   )
 }
-const TimeComponent = () => {
+const TimeComponent = ({ handleChange, value }) => {
   const classes = useStyles()
-  const [value, setValue] = useState(new Date())
-  const handleChange = e => {
-    console.log('e', e)
-    setValue(e)
-  }
 
   return (
     <TimePicker

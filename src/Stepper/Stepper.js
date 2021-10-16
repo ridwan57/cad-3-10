@@ -127,10 +127,6 @@ const useStyles = makeStyles({
   }
 })
 export default function VerticalLinearStepper () {
-  
-  
-  
-  
   const [activeStep, setActiveStep] = React.useState(3)
   const buttonClasses = useStyles()
 
@@ -243,8 +239,8 @@ export default function VerticalLinearStepper () {
                     <Container
                       maxWidth='100%'
                       style={{
-                        marginTop: '20px'
-                        // marginLeft: '-10px'
+                        marginTop: '20px',
+                        marginLeft: '-10px'
                         // marginRight: "-10px",
                         // paddingRight: "-50px",
                         // backgroundColor: "black",

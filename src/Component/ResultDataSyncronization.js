@@ -88,15 +88,13 @@ const ResultDataSyncronization = () => {
       // bordered
 
       className='table-centered rounded mb-0 overflow-hidden text-center'
-      style={
-        {
-          // borderSpacing: 0,
-          // borderCollapse: 'collapse',
-          // border: '0px solid #fff',
-          // marginLeft: 'auto',
-          // marginRight: 'auto'
-        }
-      }
+      style={{
+        // borderSpacing: 0,
+        // borderCollapse: 'collapse',
+        // border: '0px solid #fff',
+        // marginLeft: '15px'
+        // marginRight: 'auto'
+      }}
     >
       <thead
         className='thead-light'
