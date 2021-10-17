@@ -11,6 +11,7 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import NestedProp from './Component/NestedProp'
+import ImportResultData from './Result Data/ImportResultData'
 
 const theme = createTheme({
   overrides: {
@@ -33,7 +34,8 @@ ReactDOM.render(
         <div
         // style={{ marginLeft: '150px' }}
         >
-          <Stepper />
+          {/* <Stepper /> */}
+          <ImportResultData />
         </div>
       </ThemeProvider>
     </LocalizationProvider>

@@ -25,6 +25,7 @@
     "i": "^0.3.7",
     "immer": "^9.0.6",
     "lodash": "^4.17.21",
+    "mui-datatables": "^3.7.8",
     "npm": "^8.0.0",
     "react": "^17.0.2",
     "react-bootstrap": "^2.0.0-rc.0",
