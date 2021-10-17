@@ -99,63 +99,22 @@ const useStyles = makeStyles({
   }
 })
 
-const initialQuotas = [
-  {
-    id: 1,
-    name: 'Freedom Fighter Quota',
-    percentage: 20,
-    unSeats: 12,
-    desc:
-      'Lorem ipsum dolor sit amet, populo delicatissimi  interpretaris ea cum. Mutat pertinax assentior ea   eam, ea atqui consul ius. Eum prima debitis ei. Eu est libris regione gubergren, democritum reprimique pri id. Cu qui regione patrioque.',
-    q: ['general']
-  },
-  {
-    id: 2,
-    name: 'Own Quota',
-    percentage: 20,
-    unSeats: 12,
-    desc:
-      'Lorem ipsum dolor sit amet, populo delicatissimi  interpretaris ea cum. Mutat pertinax assentior ea   eam, ea atqui consul ius. Eum prima debitis ei. Eu est libris regione gubergren, democritum reprimique pri id. Cu qui regione patrioque.',
-
-    q: ['general']
-  },
-  {
-    id: 3,
-    name: 'Special Quota',
-    percentage: 5,
-    unSeats: 12,
-    desc:
-      'Lorem ipsum dolor sit amet, populo delicatissimi  interpretaris ea cum. Mutat pertinax assentior ea   eam, ea atqui consul ius. Eum prima debitis ei. Eu est libris regione gubergren, democritum reprimique pri id. Cu qui regione patrioque.',
-
-    q: ['special']
-  },
-  {
-    id: 4,
-    name: 'General Quota',
-    percentage: 20,
-    unSeats: 12,
-    desc:
-      'Lorem ipsum dolor sit amet, populo delicatissimi  interpretaris ea cum. Mutat pertinax assentior ea   eam, ea atqui consul ius. Eum prima debitis ei. Eu est libris regione gubergren, democritum reprimique pri id. Cu qui regione patrioque.',
-
-    q: ['general']
-  }
-]
 const resetNewQuota = {
   name: '',
   type: '',
   desc: ''
 }
-const Quota = () => {
+const Quota = ({ quotas, setQuotas }) => {
   const smMatches = useMediaQuery(theme => theme.breakpoints.up('sm'))
-  console.log('smMatches', smMatches)
+  // console.log('smMatches', smMatches)
 
   const classes = useStyles()
   const [id, setId] = React.useState(0)
   const [openDialog, setOpenDialog] = useState(false)
-  const [quotas, setQuotas] = useState(initialQuotas)
+
   const [newQuota, setNewQuota] = useState(resetNewQuota)
   const saveQuota = () => {
-    console.log('saveQuota', saveQuota)
+    // console.log('saveQuota', saveQuota)
     setQuotas(prev => [
       ...prev,
       {
@@ -351,7 +310,7 @@ const Quota = () => {
         style={{
           borderSpacing: 0,
           borderCollapse: 'collapse',
-          border: '0px solid #fff',
+          border: '0px solid #fff'
         }}
       >
         <thead

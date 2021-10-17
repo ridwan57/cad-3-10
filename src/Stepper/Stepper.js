@@ -46,6 +46,47 @@ import PhaseComponent from '../Component/PhaseComponent'
 import Breadcrumbs from '@mui/material/Breadcrumbs'
 import Link from '@mui/material/Link'
 import ResultDataSyncronization from '../Component/ResultDataSyncronization'
+const initialQuotas = [
+  {
+    id: 1,
+    name: 'Freedom Fighter Quota',
+    percentage: 20,
+    unSeats: 12,
+    desc:
+      'Lorem ipsum dolor sit amet, populo delicatissimi  interpretaris ea cum. Mutat pertinax assentior ea   eam, ea atqui consul ius. Eum prima debitis ei. Eu est libris regione gubergren, democritum reprimique pri id. Cu qui regione patrioque.',
+    q: ['general']
+  },
+  {
+    id: 2,
+    name: 'Own Quota',
+    percentage: 20,
+    unSeats: 12,
+    desc:
+      'Lorem ipsum dolor sit amet, populo delicatissimi  interpretaris ea cum. Mutat pertinax assentior ea   eam, ea atqui consul ius. Eum prima debitis ei. Eu est libris regione gubergren, democritum reprimique pri id. Cu qui regione patrioque.',
+
+    q: ['general']
+  },
+  {
+    id: 3,
+    name: 'Special Quota',
+    percentage: 5,
+    unSeats: 12,
+    desc:
+      'Lorem ipsum dolor sit amet, populo delicatissimi  interpretaris ea cum. Mutat pertinax assentior ea   eam, ea atqui consul ius. Eum prima debitis ei. Eu est libris regione gubergren, democritum reprimique pri id. Cu qui regione patrioque.',
+
+    q: ['special']
+  },
+  {
+    id: 4,
+    name: 'General Quota',
+    percentage: 20,
+    unSeats: 12,
+    desc:
+      'Lorem ipsum dolor sit amet, populo delicatissimi  interpretaris ea cum. Mutat pertinax assentior ea   eam, ea atqui consul ius. Eum prima debitis ei. Eu est libris regione gubergren, democritum reprimique pri id. Cu qui regione patrioque.',
+
+    q: ['general']
+  }
+]
 
 const steps = [
   {
@@ -148,6 +189,14 @@ export default function VerticalLinearStepper () {
     }))
   }
 
+  //state for quotas
+
+  const [quotas, setQuotas] = useState(initialQuotas)
+
+  //state of phases
+
+  const [phasesState, setPhasesState] = useState([])
+
   const buttonClasses = useStyles()
 
   const handleNext = () => {
@@ -239,7 +288,7 @@ export default function VerticalLinearStepper () {
                         // color: "red",
                       }}
                     >
-                      <Quota />
+                      <Quota quotas={quotas} setQuotas={setQuotas} />
                     </Container>
                   )}
                   {index === 2 && (
@@ -254,7 +303,10 @@ export default function VerticalLinearStepper () {
                         // color: "red",
                       }}
                     >
-                      <PhaseComponent />
+                      <PhaseComponent
+                        phasesState={phasesState}
+                        setPhasesState={setPhasesState}
+                      />
                     </Container>
                   )}
 
