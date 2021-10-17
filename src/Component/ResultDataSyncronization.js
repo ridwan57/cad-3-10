@@ -40,7 +40,7 @@ const useStyles = makeStyles({
   textField: {
     '& label.Mui-focused': {
       color: '#17A5CE',
-      padding: '2px 10px 0px 10px',
+      padding: '0px 10px 0px 10px',
       letterSpacing: '.75px',
       visibility: 'hidden',
 
@@ -55,9 +55,9 @@ const useStyles = makeStyles({
     },
     '& .MuiOutlinedInput': {},
     '& .MuiInputBase-input': {
-      // padding: '4px 17px',
-      // marginTop: '-10px'
-      // maxWidth: '200px'
+      padding: '8px'
+      // marginTop: '10px'
+      // maxWidth: '20px'
       // backgroundColor: 'blue'
     },
     '& .MuiOutlinedInput-root': {
@@ -65,14 +65,14 @@ const useStyles = makeStyles({
       // - The Input-root, inside the TextField-root
       '& fieldset': {
         // - The <fieldset> inside the Input-root
-        // borderColor: "pink", // - Set the Input border
+        borderColor: 'pink' // - Set the Input border
       },
       '&:hover fieldset': {
-        // borderColor: "yellow", // - Set the Input border when parent has :hover
+        borderColor: 'yellow' // - Set the Input border when parent has :hover
       },
       '&.Mui-focused fieldset': {
         // - Set the Input border when parent is focused
-        // borderColor: "green",
+        // borderColor: 'green',
         border: '2px solid rgba(199, 199, 199, .7)'
       }
     }
@@ -88,13 +88,15 @@ const ResultDataSyncronization = () => {
       // bordered
 
       className='table-centered rounded mb-0 overflow-hidden text-center'
-      style={{
-        // borderSpacing: 0,
-        // borderCollapse: 'collapse',
-        // border: '0px solid #fff',
-        // marginLeft: '15px'
-        // marginRight: 'auto'
-      }}
+      style={
+        {
+          // borderSpacing: 0,
+          // borderCollapse: 'collapse',
+          // border: '0px solid #fff',
+          // marginLeft: '15px'
+          // marginRight: 'auto'
+        }
+      }
     >
       <thead
         className='thead-light'
