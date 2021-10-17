@@ -84,8 +84,7 @@ const defaultPhase = {
     endDate: new Date()
   }
 }
-const PhaseComponent = () => {
-  const [phasesState, setPhasesState] = useState([])
+const PhaseComponent = ({ setPhasesState, phasesState }) => {
   const tasks = [
     { title: 'Accepting Applications' },
     { title: 'Migration result publishing' },

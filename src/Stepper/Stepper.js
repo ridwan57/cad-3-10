@@ -127,7 +127,27 @@ const useStyles = makeStyles({
   }
 })
 export default function VerticalLinearStepper () {
-  const [activeStep, setActiveStep] = React.useState(3)
+  const [activeStep, setActiveStep] = React.useState(0)
+
+  const [appReq, setAppReq] = useState({
+    minSSCGeneral: '',
+    maxSSCGeneral: '',
+    minSSCBOU: '',
+    maxSSCBOU: '',
+    minChoices: '',
+    maxChoices: '',
+    applicationFee: '',
+    registrationFee: ''
+  })
+  const handleChangeAppReq = e => {
+    console.log(e.target)
+    const { name, value } = e.target
+    setAppReq(prev => ({
+      ...prev,
+      [name]: value
+    }))
+  }
+
   const buttonClasses = useStyles()
 
   const handleNext = () => {
@@ -200,7 +220,10 @@ export default function VerticalLinearStepper () {
                         // color: "red",
                       }}
                     >
-                      <ApplicantsRequirement />
+                      <ApplicantsRequirement
+                        appReq={appReq}
+                        handleChange={handleChangeAppReq}
+                      />
                     </Container>
                   )}
                   {index === 1 && (

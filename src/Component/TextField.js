@@ -49,7 +49,9 @@ function ColorTextFields (props) {
     placeHolderName = '',
     titleName = 'Default',
     width = 'auto',
-    value
+    value,
+    name,
+    handleChange
   } = props
   const classes = useStyles()
   return (
@@ -57,6 +59,7 @@ function ColorTextFields (props) {
       // multiline
       label={`${titleName}`}
       color='primary'
+      name={name}
       // id=
       // style={{ color: "blue" }}
       style={{
@@ -69,6 +72,7 @@ function ColorTextFields (props) {
       className={classes.root}
       value={value}
       // color='se'
+      onChange={handleChange}
       focused
       placeholder={`${placeHolderName}`}
     />
