@@ -200,20 +200,41 @@ export default function VerticalLinearStepper () {
   const [quotas, setQuotas] = useState(
     initialQuotas.sort((a, b) => a.priority - b.priority)
   )
-  const handleUpPriority = id => {
+  const handleUpQuotaPriority = id => {
     console.log('id', id)
     setQuotas(
       produce(draft => {
-        const findId = draft.find(quota => quota.id === id)
-        console.log('findId', findId)
-        if (findId.priority !== 1) {
-          findId.priority = parseInt(findId.priority) - 1
-          const findLowPriority = draft.find(
-            quota => quota.priority === findId.priority
+        const clickedQuota = draft.find(quota => quota.id === id)
+
+        // console.log('clickedQuota', clickedQuota)
+        if (clickedQuota.priority !== 1) {
+          const higherQuota = draft.find(
+            quota => quota.priority === clickedQuota.priority - 1
           )
-          findLowPriority.priority = parseInt(findLowPriority.priority) + 1
+          clickedQuota.priority = clickedQuota.priority - 1
+
+          higherQuota.priority = higherQuota.priority + 1
         }
-        // draft.sort((a, b) => a.priority - b.priority)
+        return draft.sort((a, b) => a.priority - b.priority)
+      })
+    )
+  }
+  const handleDownQuotaPriority = id => {
+    console.log('id', id)
+    setQuotas(
+      produce(draft => {
+        const clickedQuota = draft.find(quota => quota.id === id)
+
+        // console.log('clickedQuota', clickedQuota)
+        if (clickedQuota.priority !== draft.length) {
+          const lowerQuota = draft.find(
+            quota => quota.priority === clickedQuota.priority + 1
+          )
+          clickedQuota.priority = clickedQuota.priority + 1
+
+          lowerQuota.priority = lowerQuota.priority - 1
+        }
+        return draft.sort((a, b) => a.priority - b.priority)
       })
     )
   }
@@ -314,9 +335,10 @@ export default function VerticalLinearStepper () {
                       }}
                     >
                       <Quota
-                        quotas={quotas.sort((a, b) => a.priority - b.priority)}
+                        quotas={quotas}
                         setQuotas={setQuotas}
-                        handleUpPriority={handleUpPriority}
+                        handleUpPriority={handleUpQuotaPriority}
+                        handleDownPriority={handleDownQuotaPriority}
                       />
                     </Container>
                   )}
