@@ -386,13 +386,27 @@ const Quota = ({ quotas, setQuotas, handleUpPriority, handleDownPriority }) => {
           }}
         >
           <tr className='mb-100'>
-            <th className='border-0 '>ID</th>
-            <th className='border-0 '>Quota Name</th>
-            <th className='border-0'>Percentage</th>
-            <th className='border-0'>Unallocated Seats</th>
-            <th className='border-0'>General</th>
-            <th className='border-0'>Special</th>
-            <th className='border-0'>Priority</th>
+            <th className='border-0 ' style={{ width: '15%' }}>
+              ID
+            </th>
+            <th className='border-0 ' style={{ width: '15%' }}>
+              Quota Name
+            </th>
+            <th className='border-0' style={{ width: '15%' }}>
+              Percentage
+            </th>
+            <th className='border-0' style={{ width: '15%' }}>
+              Unallocated Seats
+            </th>
+            <th className='border-0' style={{ width: '10%' }}>
+              General
+            </th>
+            <th className='border-0' style={{ width: '10%' }}>
+              Special
+            </th>
+            <th className='border-0' style={{ width: '10%' }}>
+              Priority
+            </th>
             <th className='border-0 w-30'></th>
           </tr>
         </thead>

@@ -34,8 +34,8 @@ ReactDOM.render(
         <div
         // style={{ marginLeft: '150px' }}
         >
-          {/* <Stepper /> */}
-          <ImportResultData />
+          <Stepper />
+          {/* <ImportResultData /> */}
         </div>
       </ThemeProvider>
     </LocalizationProvider>
