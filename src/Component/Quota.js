@@ -22,6 +22,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import { makeStyles } from '@mui/styles'
 import { ColorTextFields } from './TextField'
+import produce from 'immer'
 
 const useStyles = makeStyles({
   collapseStyle: {
@@ -55,6 +56,46 @@ const useStyles = makeStyles({
     '& .MuiButton-contained': {
       backgroundColor: '#17A5CE',
       color: '#17A5CE'
+    }
+  },
+  editableTextField: {
+    '& label.Mui-focused': {
+      // color: '#17A5CE',
+      // padding: '2px 10px 0px 10px',
+      // letterSpacing: '.75px',
+      // // backgroundColor: 'red',
+      // // position: 'relative',
+      // // width: '80px',
+      // fontSize: '20px',
+      // // color: "red",
+      // backgroundColor: 'white'
+    },
+    '& .MuiOutlinedInput': {},
+    '& .MuiInputBase-input': {
+      // padding: '4px 17px',
+      marginTop: '-4px',
+      maxHeight: '0px',
+      textAlign: 'center',
+      fontSize: '20px'
+
+      // maxWidth: '300px',
+      // backgroundColor: 'blue'
+    },
+    '& .MuiOutlinedInput-root': {
+      // color: "#17A5CE",
+      // - The Input-root, inside the TextField-root
+      '& fieldset': {
+        // - The <fieldset> inside the Input-root
+        // borderColor: "pink", // - Set the Input border
+      },
+      '&:hover fieldset': {
+        // borderColor: "yellow", // - Set the Input border when parent has :hover
+      },
+      '&.Mui-focused fieldset': {
+        // - Set the Input border when parent is focused
+        // borderColor: "green",
+        border: '0px solid rgba(199, 199, 199, .7)'
+      }
     }
   },
   textField: {
@@ -121,10 +162,11 @@ const Quota = ({ quotas, setQuotas, handleUpPriority, handleDownPriority }) => {
       {
         id: prev.length + 1,
         name: newQuota.name,
-        q: [newQuota.type],
+        q: newQuota.type,
         desc: newQuota.desc,
         percentage: 20,
-        unSeats: 12
+        unSeats: 12,
+        priority: prev.length + 1
       }
     ])
     setNewQuota(resetNewQuota)
@@ -137,6 +179,27 @@ const Quota = ({ quotas, setQuotas, handleUpPriority, handleDownPriority }) => {
       ...prev,
       [name]: name === 'undefined' ? checked : value
     }))
+  }
+
+  const handleQuotaChange = (e, id) => {
+    const { name, value } = e.target
+
+    const quotaTypes = ['general', 'special']
+    if (quotaTypes.includes(name)) {
+      setQuotas(
+        produce(draft => {
+          const findQuotaById = draft.find(quota => quota.id === id)
+          findQuotaById.q = findQuotaById.q === name ? null : name
+        })
+      )
+    } else {
+      setQuotas(
+        produce(draft => {
+          const findQuotaById = draft.find(quota => quota.id === id)
+          findQuotaById[name] = value
+        })
+      )
+    }
   }
   const handleChange = id => {
     setId(id)
@@ -351,54 +414,86 @@ const Quota = ({ quotas, setQuotas, handleUpPriority, handleDownPriority }) => {
             >
               <td>{eachQuota.id}</td>
               <td>{eachQuota.name}</td>
-              <td>
-                <div
+              <td style={{ position: 'relative' }}>
+                <TextField
                   style={{
-                    height: '80%',
-                    width: '60%',
-                    margin: '0 auto',
-                    borderRadius: '7px',
-                    border: '1px solid #C7c7c7',
+                    // height: '40%',
+                    minWidth: '75px',
+                    maxWidth: '40%',
+                    margin: 'auto auto auto auto',
+                    // paddingRight: '10px',
+
+                    paddingTop: '5px',
+                    border: '2px solid rgba(199, 199, 199, .7)',
+
                     backgroundColor: 'white',
                     textAlign: 'center',
                     display: 'flex',
-                    justifyContent: 'center'
+                    justifyContent: 'center',
+                    paddingRight: '7%'
+                  }}
+                  className={classes.editableTextField}
+                  fullWidth
+                  focused
+                  // label='Quota Name'
+                  name='percentage'
+                  onChange={e => handleQuotaChange(e, eachQuota.id)}
+                  value={eachQuota.percentage}
+                />
+                <span
+                  style={{
+                    fontSize: '18px',
+                    position: 'absolute',
+                    left: 'calc(46% + ' + '15px' + ')',
+                    top: 'calc(50% + ' + '-13px' + ')'
                   }}
                 >
-                  {eachQuota.percentage}%
-                </div>
+                  %
+                </span>
               </td>
               <td>
-                <div
+                <TextField
                   style={{
-                    height: '80%',
-                    width: '40%',
-                    margin: '0 auto',
-                    borderRadius: '7px',
-                    border: '1px solid #C7c7c7',
+                    height: '40%',
+                    minWidth: '55px',
+                    maxWidth: '40%',
+                    margin: 'auto auto auto auto',
+                    paddingTop: '5px',
+
+                    border: '2px solid rgba(199, 199, 199, .7)',
+                    // border: '1px solid #C7c7c7',
                     backgroundColor: 'white',
                     textAlign: 'center',
                     display: 'flex',
                     justifyContent: 'center'
                   }}
-                >
-                  {eachQuota.unSeats}
-                </div>
+                  className={classes.editableTextField}
+                  fullWidth
+                  focused
+                  // label='Quota Name'
+                  name='unSeats'
+                  onChange={e => handleQuotaChange(e, eachQuota.id)}
+                  value={eachQuota.unSeats}
+                />
               </td>
               <td>
                 <Checkbox
+                  name='general'
+                  onChange={e => handleQuotaChange(e, eachQuota.id)}
                   style={{
-                    color: eachQuota.q.includes('general') ? '#17A5CE' : null
+                    color: eachQuota.q === 'general' ? '#17A5CE' : null
                   }}
-                  checked={eachQuota.q.includes('general')}
+                  checked={eachQuota.q === 'general'}
                 ></Checkbox>
               </td>
               <td>
                 <Checkbox
+                  name='special'
+                  onChange={e => handleQuotaChange(e, eachQuota.id)}
                   style={{
-                    color: eachQuota.q.includes('special') ? '#17A5CE' : null
+                    color: eachQuota.q === 'special' ? '#17A5CE' : null
                   }}
-                  checked={eachQuota.q.includes('special')}
+                  checked={eachQuota.q === 'special'}
                   onClick={e => {
                     console.log(e.target.checked)
                   }}
