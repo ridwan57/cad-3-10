@@ -214,13 +214,9 @@ const data = new Array(50).fill([
 //  setRowProps: (row, dataIndex, rowIndex) => {
 //   return { style: { color: `${rowIndex%2==0 ? 'blue' : 'red'` } }
 // }
-const source = axios.CancelToken.source()
 const axioses = axios.create({
-  baseURL: 'https://v2.convertapi.com',
-  cancelToken: source.token
+  baseURL: 'https://v2.convertapi.com'
 })
-axioses.CancelToken = axios.CancelToken
-axioses.isCancel = axios.isCancel
 
 const ButtonStyle = {
   backgroundColor: '#2424e8a8',
@@ -239,19 +235,25 @@ const ErrButton = () => {
   )
 }
 
+let source
 const ImportResultData = () => {
   const [isRPModule, setIsRPModule] = useState(false)
   const [uploading, setUploading] = useState(false)
   const [selectedFiles, setSelectedFiles] = useState(null)
-  const [percentage, setPercentage] = useState(0)
   const classes = useStyles()
 
   const uploadFile = () => {
+    console.log('upload file')
+    source = axios.CancelToken.source()
+    axioses.CancelToken = axios.CancelToken
+    axioses.isCancel = axios.isCancel
+
     axioses
       .post('/upload', selectedFiles, {
         headers: {
           'Content-Type': selectedFiles.type
         },
+        cancelToken: source.token,
         onUploadProgress: progressEvent =>
           setProgress(
             Math.round(100 * (progressEvent.loaded / progressEvent.total))
@@ -414,8 +416,9 @@ const ImportResultData = () => {
                     // component='label'
                     // for='upload-photo'
                     onClick={() => {
-                      setUploading(true)
+                      console.log('upload button clicked')
                       uploadFile()
+                      setUploading(true)
                     }}
                     disabled={selectedFiles === null}
                   >
@@ -456,8 +459,11 @@ const ImportResultData = () => {
                     // component='label'
                     // for='upload-photo'
                     onClick={() => {
+                      console.log('canel btn clicked')
                       source.cancel()
                       setUploading(false)
+                      setSelectedFiles(null)
+                      setProgress(0)
                     }}
                   >
                     Cancel Upload
@@ -466,6 +472,32 @@ const ImportResultData = () => {
               </>
             )}
           </div>
+        </div>
+        <div className='d-flex justify-content-between align-items-center p-5'>
+          <Typography>
+            No of Records Inserted:{' '}
+            <span style={{ fontWeight: 'bold', marginLeft: '20px' }}>
+              {43434}
+            </span>
+          </Typography>
+
+          <Typography>
+            No of Records Updated:{' '}
+            <span
+              style={{ fontWeight: 'bold', color: 'green', marginLeft: '20px' }}
+            >
+              {43434}
+            </span>
+          </Typography>
+
+          <Typography>
+            No of Records Deleted:{' '}
+            <span
+              style={{ fontWeight: 'bold', color: 'red', marginLeft: '20px' }}
+            >
+              {43434}
+            </span>
+          </Typography>
         </div>
         <Container>
           <ThemeProvider theme={theme}>
