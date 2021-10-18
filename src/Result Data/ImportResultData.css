@@ -1,6 +1,4 @@
 ::-webkit-file-upload-button {
   display: none;
+  cursor: pointer;
 }
-/* input[type='file'] {
-  color: transparent;
-} */

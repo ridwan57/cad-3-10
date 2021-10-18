@@ -67,8 +67,10 @@ const useStyles = makeStyles({
     },
     '& .MuiOutlinedInput': {},
     '& .MuiInputBase-input': {
-      padding: '4px 17px',
-      maxWidth: '300px'
+      padding: '6px 17px',
+      maxWidth: '300px',
+      color: '#c7c7c7',
+      cursor: 'pointer'
     },
     '& .MuiOutlinedInput-root': {
       // color: 'white',
@@ -83,7 +85,8 @@ const useStyles = makeStyles({
       '&.Mui-focused fieldset': {
         // - Set the Input border when parent is focused
         // borderColor: "green",
-        border: '1px solid #C7C7C7'
+        border: '1px solid #C7C7C7',
+        cursor: 'pointer'
       }
     }
   },
@@ -222,7 +225,7 @@ const ImportResultData = () => {
     print: false,
     selectableRows: false,
     rowsPerPage: [3],
-    rowsPerPageOptions: [1, 3, 5, 6],
+    rowsPerPageOptions: [1, 3, 5, 50],
     elevation: false,
 
     setRowProps: (row, dataIndex, rowIndex) => {
@@ -253,6 +256,26 @@ const ImportResultData = () => {
     onChangeRowsPerPage (numberOfRows) {
       console.log({ numberOfRows })
     }
+    // customFooter: (
+    //   count,
+    //   page,
+    //   rowsPerPage,
+    //   changeRowsPerPage,
+    //   changePage,
+    //   textLabels
+    // ) => {
+    //   return (
+    //     <CustomFooter
+    //       count={count}
+    //       page={page}
+    //       rowsPerPage={rowsPerPage}
+    //       changeRowsPerPage={changeRowsPerPage}
+    //       changePage={changePage}
+    //       textLabels={textLabels}
+    //     />
+    //   )
+    // }
+
     // setCellHeaderProps: () => ({
     //   className: classes.table
     // })
@@ -260,21 +283,21 @@ const ImportResultData = () => {
 
   const [progress, setProgress] = React.useState(0)
 
-  React.useEffect(() => {
-    const timer = setInterval(() => {
-      setProgress(oldProgress => {
-        if (oldProgress === 100) {
-          return 0
-        }
-        const diff = Math.random() * 10
-        return Math.min(oldProgress + diff, 100)
-      })
-    }, 500)
+  // React.useEffect(() => {
+  //   const timer = setInterval(() => {
+  //     setProgress(oldProgress => {
+  //       if (oldProgress === 100) {
+  //         return 0
+  //       }
+  //       const diff = Math.random() * 10
+  //       return Math.min(oldProgress + diff, 100)
+  //     })
+  //   }, 500)
 
-    return () => {
-      clearInterval(timer)
-    }
-  }, [])
+  //   return () => {
+  //     clearInterval(timer)
+  //   }
+  // }, [])
 
   return (
     <Container>
@@ -308,13 +331,14 @@ const ImportResultData = () => {
                     label='Upload File here'
                     color='primary'
                     type='file'
-                    title=' rrffff'
+                    title=' upload file'
                     //   name={name}
                     // id=
                     // style={{ color: "blue" }}
                     style={{
                       // display: 'none',
                       // color: 'white',
+                      cursor: 'pointer',
                       position: 'relative',
                       maxWidth: `400px`,
                       // fontFamily: "open-sans",
