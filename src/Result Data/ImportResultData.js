@@ -9,11 +9,13 @@ import {
 } from '@material-ui/core'
 import { makeStyles } from '@mui/styles'
 import MUIDataTable from 'mui-datatables'
+import Error from 'react-500'
 
 import { TextField } from '@mui/material'
 import React, { useState } from 'react'
 import { style } from '@mui/system'
 import './ImportResultData.css'
+import axios from 'axios'
 const useStyles = makeStyles({
   table: {
     // backgroundColor: 'red',
@@ -212,12 +214,56 @@ const data = new Array(50).fill([
 //  setRowProps: (row, dataIndex, rowIndex) => {
 //   return { style: { color: `${rowIndex%2==0 ? 'blue' : 'red'` } }
 // }
+const source = axios.CancelToken.source()
+const axioses = axios.create({
+  baseURL: 'https://v2.convertapi.com',
+  cancelToken: source.token
+})
+axioses.CancelToken = axios.CancelToken
+axioses.isCancel = axios.isCancel
+
+const ButtonStyle = {
+  backgroundColor: '#2424e8a8',
+  color: 'white',
+  padding: '10px 25px',
+  borderRadius: '20px',
+  marginLeft: '8.5rem',
+  marginTop: '2rem',
+  border: 0
+}
+const ErrButton = () => {
+  return (
+    <button style={ButtonStyle} onClick={() => window.location.reload()}>
+      Try again
+    </button>
+  )
+}
 
 const ImportResultData = () => {
   const [isRPModule, setIsRPModule] = useState(false)
   const [uploading, setUploading] = useState(false)
+  const [selectedFiles, setSelectedFiles] = useState(null)
+  const [percentage, setPercentage] = useState(0)
   const classes = useStyles()
 
+  const uploadFile = () => {
+    axioses
+      .post('/upload', selectedFiles, {
+        headers: {
+          'Content-Type': selectedFiles.type
+        },
+        onUploadProgress: progressEvent =>
+          setProgress(
+            Math.round(100 * (progressEvent.loaded / progressEvent.total))
+          )
+      })
+      .catch(error => {
+        // this.isLoading = false
+        if (axioses.isCancel(error)) {
+          console.log('Request canceled')
+        }
+      })
+  }
   const options = {
     jumpToPage: true,
     filter: true,
@@ -298,7 +344,7 @@ const ImportResultData = () => {
   //     clearInterval(timer)
   //   }
   // }, [])
-
+  // return <Error button={ErrButton} />
   return (
     <Container>
       <Paper>
@@ -332,6 +378,10 @@ const ImportResultData = () => {
                     color='primary'
                     type='file'
                     title=' upload file'
+                    onChange={e => {
+                      console.log(e.target.files)
+                      setSelectedFiles(e.target.files[0])
+                    }}
                     //   name={name}
                     // id=
                     // style={{ color: "blue" }}
@@ -363,7 +413,11 @@ const ImportResultData = () => {
                     sx={{ mt: 1, mr: 1 }}
                     // component='label'
                     // for='upload-photo'
-                    onClick={() => setUploading(true)}
+                    onClick={() => {
+                      setUploading(true)
+                      uploadFile()
+                    }}
+                    disabled={selectedFiles === null}
                   >
                     {/* <input type='file' hidden /> */}
                     Upload
@@ -401,7 +455,10 @@ const ImportResultData = () => {
                     sx={{ mt: 1, mr: 1 }}
                     // component='label'
                     // for='upload-photo'
-                    onClick={() => setUploading(false)}
+                    onClick={() => {
+                      source.cancel()
+                      setUploading(false)
+                    }}
                   >
                     Cancel Upload
                   </Button>

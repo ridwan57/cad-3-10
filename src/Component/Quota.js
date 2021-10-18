@@ -104,8 +104,10 @@ const resetNewQuota = {
   type: '',
   desc: ''
 }
-const Quota = ({ quotas, setQuotas }) => {
+const Quota = ({ quotas, setQuotas, handleUpPriority
+ }) => {
   const smMatches = useMediaQuery(theme => theme.breakpoints.up('sm'))
+
   // console.log('smMatches', smMatches)
 
   const classes = useStyles()
@@ -417,7 +419,8 @@ const Quota = ({ quotas, setQuotas }) => {
                     size='small'
                   >
                     <KeyboardArrowUpIcon
-                    // style={{ width: '0.88em', height: '0.88em' }}
+                      // style={{ width: '0.88em', height: '0.88em' }}
+                      onClick={() => handleUpPriority(eachQuota.id)}
                     />
                   </Fab>
                   {/* rgba(23, 165, 206, 1) */}

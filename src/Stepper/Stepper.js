@@ -46,12 +46,15 @@ import PhaseComponent from '../Component/PhaseComponent'
 import Breadcrumbs from '@mui/material/Breadcrumbs'
 import Link from '@mui/material/Link'
 import ResultDataSyncronization from '../Component/ResultDataSyncronization'
+import produce from 'immer'
+
 const initialQuotas = [
   {
     id: 1,
     name: 'Freedom Fighter Quota',
     percentage: 20,
     unSeats: 12,
+    priority: 1,
     desc:
       'Lorem ipsum dolor sit amet, populo delicatissimi  interpretaris ea cum. Mutat pertinax assentior ea   eam, ea atqui consul ius. Eum prima debitis ei. Eu est libris regione gubergren, democritum reprimique pri id. Cu qui regione patrioque.',
     q: ['general']
@@ -61,6 +64,7 @@ const initialQuotas = [
     name: 'Own Quota',
     percentage: 20,
     unSeats: 12,
+    priority: 2,
     desc:
       'Lorem ipsum dolor sit amet, populo delicatissimi  interpretaris ea cum. Mutat pertinax assentior ea   eam, ea atqui consul ius. Eum prima debitis ei. Eu est libris regione gubergren, democritum reprimique pri id. Cu qui regione patrioque.',
 
@@ -71,6 +75,7 @@ const initialQuotas = [
     name: 'Special Quota',
     percentage: 5,
     unSeats: 12,
+    priority: 4,
     desc:
       'Lorem ipsum dolor sit amet, populo delicatissimi  interpretaris ea cum. Mutat pertinax assentior ea   eam, ea atqui consul ius. Eum prima debitis ei. Eu est libris regione gubergren, democritum reprimique pri id. Cu qui regione patrioque.',
 
@@ -81,6 +86,7 @@ const initialQuotas = [
     name: 'General Quota',
     percentage: 20,
     unSeats: 12,
+    priority: 3,
     desc:
       'Lorem ipsum dolor sit amet, populo delicatissimi  interpretaris ea cum. Mutat pertinax assentior ea   eam, ea atqui consul ius. Eum prima debitis ei. Eu est libris regione gubergren, democritum reprimique pri id. Cu qui regione patrioque.',
 
@@ -191,7 +197,26 @@ export default function VerticalLinearStepper () {
 
   //state for quotas
 
-  const [quotas, setQuotas] = useState(initialQuotas)
+  const [quotas, setQuotas] = useState(
+    initialQuotas.sort((a, b) => a.priority - b.priority)
+  )
+  const handleUpPriority = id => {
+    console.log('id', id)
+    setQuotas(
+      produce(draft => {
+        const findId = draft.find(quota => quota.id === id)
+        console.log('findId', findId)
+        if (findId.priority !== 1) {
+          findId.priority = parseInt(findId.priority) - 1
+          const findLowPriority = draft.find(
+            quota => quota.priority === findId.priority
+          )
+          findLowPriority.priority = parseInt(findLowPriority.priority) + 1
+        }
+        // draft.sort((a, b) => a.priority - b.priority)
+      })
+    )
+  }
 
   //state of phases
 
@@ -288,7 +313,11 @@ export default function VerticalLinearStepper () {
                         // color: "red",
                       }}
                     >
-                      <Quota quotas={quotas} setQuotas={setQuotas} />
+                      <Quota
+                        quotas={quotas.sort((a, b) => a.priority - b.priority)}
+                        setQuotas={setQuotas}
+                        handleUpPriority={handleUpPriority}
+                      />
                     </Container>
                   )}
                   {index === 2 && (
