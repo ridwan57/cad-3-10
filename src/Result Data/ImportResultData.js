@@ -16,14 +16,22 @@ import { style } from '@mui/system'
 import './ImportResultData.css'
 const useStyles = makeStyles({
   table: {
-    backgroundColor: 'red'
+    // backgroundColor: 'red',
+    '& .MuiTableCell-head': {
+      // textAlign: 'center',
+      // backgroundColor: 'red',
 
-    // '& span': {
-    //   // display: 'flex',
-    //   // justifyContent: 'center',
-    //   // alignItems: 'center',
-    //   backgroundColor: 'red'
-    // }
+      // marginLeft: '20px',
+      '& span': {
+        // display: 'flex',
+        justifyContent: 'center',
+        // textAlign: 'center',
+        // alignItems: 'center'
+        // backgroundColor: 'red'
+        fontWeight: 'bold'
+      }
+    }
+
     // '& .MuiTableHead-root': {
     //   display: 'flex',
     //   justifyContent: 'center',
@@ -142,19 +150,44 @@ const inlineStyle = {
 
 const theme = createTheme({
   overrides: {
-    MUIDataTable: {
+    // MUIDataTable: {
+    //   root: {
+    //     // backgroundColor: '#FF000'
+    //   },
+    //   paper: {
+    //     // boxShadow: 'none'
+    //   }
+    // },
+    MUIDataTableHead: {
       root: {
-        backgroundColor: '#FF000'
-      },
-      paper: {
-        // boxShadow: 'none'
+        backgroundColor: '#1D252D',
+        color: 'blue',
+        borderBottom: 'none'
       }
     },
     MUIDataTableBodyCell: {
       root: {
-        // backgroundColor: '#FF0000'
+        // backgroundColor: '#FFF',
+        textAlign: 'center',
+        paddingRight: '15px'
+      }
+    },
+    MuiTableCell: {
+      head: {
+        // fontWeight: 'bold',
+        // display: 'block',
+        // textAlign: 'center',
+        // justifyContent: 'center',
+        // marginLeft: 'auto',
+        // backgroundColor: 'red'
       }
     }
+    // MUIDataTablePagination: {
+    //   root: {
+    //     backgroundColor: '#000',
+    //     color: '#fff'
+    //   }
+    // }
   }
 })
 const columns = ['CRVS ID', 'SSC roll', 'SSc year', 'Comments']
@@ -183,11 +216,15 @@ const ImportResultData = () => {
   const classes = useStyles()
 
   const options = {
+    jumpToPage: true,
     filter: true,
     filterType: 'dropdown',
     print: false,
     selectableRows: false,
+    rowsPerPage: [3],
+    rowsPerPageOptions: [1, 3, 5, 6],
     elevation: false,
+
     setRowProps: (row, dataIndex, rowIndex) => {
       return {
         style: {
@@ -195,13 +232,26 @@ const ImportResultData = () => {
         }
       }
     },
+    // setCellProps: value => {
+    //   return {
+    //     style: {
+    //       textAlign: 'center'
+    //     }
+    //   }
+    // },
     textLabels: {
       pagination: {
-        next: 'Next Page',
-        previous: 'Previous Page',
-        rowsPerPage: 'Rows per page:',
-        displayRows: 'of'
+        next: 'Next >',
+        previous: '< Previous',
+        rowsPerPage: 'Total items Per Page',
+        displayRows: 'OF'
       }
+    },
+    onChangePage (currentPage) {
+      console.log({ currentPage })
+    },
+    onChangeRowsPerPage (numberOfRows) {
+      console.log({ numberOfRows })
     }
     // setCellHeaderProps: () => ({
     //   className: classes.table
