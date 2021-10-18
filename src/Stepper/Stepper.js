@@ -57,7 +57,7 @@ const initialQuotas = [
     priority: 1,
     desc:
       'Lorem ipsum dolor sit amet, populo delicatissimi  interpretaris ea cum. Mutat pertinax assentior ea   eam, ea atqui consul ius. Eum prima debitis ei. Eu est libris regione gubergren, democritum reprimique pri id. Cu qui regione patrioque.',
-    q: ['general']
+    q: 'general'
   },
   {
     id: 2,
@@ -68,7 +68,7 @@ const initialQuotas = [
     desc:
       'Lorem ipsum dolor sit amet, populo delicatissimi  interpretaris ea cum. Mutat pertinax assentior ea   eam, ea atqui consul ius. Eum prima debitis ei. Eu est libris regione gubergren, democritum reprimique pri id. Cu qui regione patrioque.',
 
-    q: ['general']
+    q: 'general'
   },
   {
     id: 3,
@@ -79,7 +79,7 @@ const initialQuotas = [
     desc:
       'Lorem ipsum dolor sit amet, populo delicatissimi  interpretaris ea cum. Mutat pertinax assentior ea   eam, ea atqui consul ius. Eum prima debitis ei. Eu est libris regione gubergren, democritum reprimique pri id. Cu qui regione patrioque.',
 
-    q: ['special']
+    q: 'special'
   },
   {
     id: 4,
@@ -90,7 +90,7 @@ const initialQuotas = [
     desc:
       'Lorem ipsum dolor sit amet, populo delicatissimi  interpretaris ea cum. Mutat pertinax assentior ea   eam, ea atqui consul ius. Eum prima debitis ei. Eu est libris regione gubergren, democritum reprimique pri id. Cu qui regione patrioque.',
 
-    q: ['general']
+    q: 'general'
   }
 ]
 
@@ -174,7 +174,7 @@ const useStyles = makeStyles({
   }
 })
 export default function VerticalLinearStepper () {
-  const [activeStep, setActiveStep] = React.useState(0)
+  const [activeStep, setActiveStep] = React.useState(1)
 
   const [appReq, setAppReq] = useState({
     minSSCGeneral: '',
